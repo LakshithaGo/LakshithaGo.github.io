@@ -1,7 +1,7 @@
 # LakshithaGo.github.io
-# Hi, I'm [Your Name]! 👋
+# Hi, I'm Lakshitha! 👋
 
-I am a [Current Status, e.g., Master's Student] transitioning into **Data Science** and **Business Analytics**. I enjoy turning complex data into actionable insights.
+I am a Master's Student transitioning into **the real world**. I enjoy turning complex data into actionable insights.
 
 ## 🛠 Skills
 - **Languages:** Python, SQL, R
