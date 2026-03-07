@@ -1,19 +1,15 @@
-# LakshithaGo.github.io
-# Hi, I'm Lakshitha! 👋
+### LakshithaGo.github.io 
 
-I am a Master's Student transitioning into **the real world**. I enjoy turning complex data into actionable insights.
+# Hi there! <img src="https://mir-s3-cdn-cf.behance.net/project_modules/hd/f19bb7115111865.60482d6d2366f.gif" alt="Intro GIF" width="45" height="45" />
 
-## 🛠 Skills
-- **Languages:** Python, SQL, R
-- **Tools:** Git, Tableau, Excel
-- **Data Interests:** Healthcare Analytics, Predictive Modeling
+I'm Lakshitha and I'm pursuing higher studies! I am a researcher dedicated to leveraging data to solve complex problems. 
 
-## 📂 Featured Projects
-### [Project Title 1](Link to the folder)
-*A brief description of what you did and the impact it had.*
-- **Tech used:** Python (Pandas, Matplotlib)
-- **Result:** [One sentence about the conclusion or accuracy]
+Currently, I am actively engaged in research across high-impact fields such as hospital outcome analysis, food insecurity impact, and human-computer interaction (HCI) studies. My work aims to bridge the gap between data analysis and behavioral/clinical insights.
 
-## 📬 Let's Connect!
-- [LinkedIn](Your Profile Link)
-- [Email](Your Professional Email)
+Outside the lab, I’m a movie and YouTube fiend who stays active through volunteering and following health tech. I focus on finding the narrative within numbers to make complex research or business cases accessible to everyone.
+
+### Let's Connect!
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](YOUR_LINKEDIN_URL_HERE)
+
+---
+📺 **[Click here to view my Netflix-themed Project Portfolio!](https://LakshithaGo.github.io)**
