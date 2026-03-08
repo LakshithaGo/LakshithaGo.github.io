@@ -9,7 +9,7 @@ Currently, I am actively engaged in research across high-impact fields such as h
 Outside the lab, I’m a movie and YouTube fiend who stays active through volunteering and following health tech. I focus on finding the narrative within numbers to make complex research or business cases accessible to everyone.
 
 ### Let's Connect!
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](YOUR_LINKEDIN_URL_HERE)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lakshitha-g-747b64224/)
 
 ---
 📺 **[Click here to view my Netflix-themed Project Portfolio!](https://LakshithaGo.github.io)**
