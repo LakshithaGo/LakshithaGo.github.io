@@ -10,6 +10,3 @@ Outside the lab, I’m a movie and YouTube fiend who stays active through volunt
 
 ### Let's Connect!
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lakshitha-g-747b64224/)
-
----
-📺 **[Click here to view my Netflix-themed Project Portfolio!](https://LakshithaGo.github.io)**
