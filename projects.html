@@ -7,148 +7,106 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #141414;
-            color: white;
+            margin: 0; padding: 0;
+            background-color: #141414; color: white;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             overflow-x: hidden;
         }
 
         /* --- NAVBAR --- */
         .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 4%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
-            z-index: 1000;
-            box-sizing: border-box;
+            position: fixed; top: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 4%; background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+            z-index: 1000; box-sizing: border-box;
         }
-
         .nav-left { display: flex; align-items: center; gap: 40px; }
-        
-        /* ## LOGO CUSTOMIZATION: Tightened spacing and darker red ## */
         .logo { 
-            color: #B81D24; /* Darker Netflix Red */
-            font-size: 1.8rem; 
-            font-weight: bold; 
-            text-decoration: none; 
-            letter-spacing: -1px; /* Less spacing between letters */
+            color: #B81D24; font-size: 1.8rem; font-weight: bold; 
+            text-decoration: none; letter-spacing: -1.5px; 
         }
-
         .nav-links { display: flex; gap: 20px; list-style: none; padding: 0; margin: 0; }
         .nav-links a { color: #e5e5e5; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        .nav-links a:hover { color: #b3b3b3; }
-
-        /* # EDIT THE PROFILE ICON IMAGE HERE # */
         .profile-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 4px;
-            cursor: pointer;
+            width: 32px; height: 32px; border-radius: 4px; cursor: pointer;
             background: url('https://wallpapers.com/images/high/netflix-profile-pictures-5yup5hd2i60x7ew3.webp') center/cover;
         }
 
         /* --- BANNER --- */
         .banner {
-            height: 80vh;
-            position: relative;
-            /* # EDIT THE MAIN BANNER GIF/VIDEO HERE # */
+            height: 80vh; position: relative;
             background: url('https://i.pinimg.com/originals/45/b0/9a/45b09afcf4097ac02dc5c3b2a063baa6.gif') center/cover;
-            display: flex;
-            align-items: center;
-            padding: 0 4%;
-            /* Sharp block separation at the bottom */
+            display: flex; align-items: center; padding: 0 4%;
             border-bottom: 8px solid #141414; 
         }
-
         .banner-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            /* Only side gradient to keep text readable */
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to right, #141414 10%, transparent 70%);
         }
-
-        .banner-content {
-            position: relative;
-            max-width: 650px;
-            z-index: 10;
-        }
-
-        /* ## EDIT THE MAIN TEXT TITLES HERE ## */
+        .banner-content { position: relative; max-width: 650px; z-index: 10; }
         .banner-title { font-size: 4rem; margin: 0; }
         .banner-subtitle { font-size: 1.4rem; color: #D3D3D3; margin: 10px 0 20px; font-weight: bold; }
-        .banner-desc { font-size: 1.1rem; line-height: 1.4; margin-bottom: 25px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .banner-desc { font-size: 1.1rem; line-height: 1.4; margin-bottom: 25px; }
 
         .btn-container { display: flex; gap: 15px; }
         .btn {
-            padding: 10px 25px;
-            border-radius: 4px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
+            padding: 10px 25px; border-radius: 4px; font-size: 1.1rem; font-weight: bold;
+            cursor: pointer; display: flex; align-items: center; gap: 10px; text-decoration: none;
         }
         .btn-resume { background-color: white; color: black; }
-        .btn-resume:hover { background-color: rgba(255,255,255,0.7); }
         .btn-linkedin { background-color: rgba(109, 109, 110, 0.8); color: white; }
-        .btn-linkedin:hover { background-color: rgba(109, 109, 110, 0.5); }
 
-        /* --- PROJECT ROWS --- */
+        /* --- PROJECT CARDS & HOVER EFFECT --- */
         .row { padding: 40px 4%; }
         .row-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 15px; }
-        
-        .project-list {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding: 20px 0;
-        }
-        .project-list::-webkit-scrollbar { display: none; }
+        .project-list { display: flex; gap: 10px; padding: 40px 0; }
 
         .project-card {
-            min-width: 280px;
-            height: 160px;
-            background-color: #333;
-            border-radius: 4px;
-            transition: 0.4s transform ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            /* # EDIT PROJECT BOX IMAGES HERE # */
-            background-size: cover;
-            background-position: center;
+            min-width: 300px; height: 170px;
+            background-color: #181818; border-radius: 6px;
+            position: relative; cursor: pointer; text-decoration: none; color: white;
+            transition: transform 0.3s ease, z-index 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
         }
 
         .project-card:hover {
-            transform: scale(1.1);
-            z-index: 100;
+            transform: scale(1.4) translateY(-20px);
+            z-index: 500;
         }
 
-        .card-overlay {
-            position: absolute;
-            bottom: 0; width: 100%;
-            padding: 15px 10px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            color: white;
-            font-size: 1rem;
-            font-weight: bold;
+        .card-img {
+            width: 100%; height: 100%; object-fit: cover;
+            border-radius: 6px; transition: opacity 0.3s;
         }
 
-        /* # ASSIGN IMAGES TO PROJECT BOXES HERE # */
-        .box-somerset { background-image: url('Share my Meals- A longitudinal Analysis .jpg'); }
-        .box-eye { background-image: url('eye track.jpg'); }
-        .box-interpreter { background-image: url('Impact of Consistent Interpreter.jpg'); }
-        .box-other { background-image: url('Netflix_LoadTime.gif'); }
+        /* The hidden content that shows on hover */
+        .hover-info {
+            position: absolute; top: 100%; left: 0; width: 100%;
+            background-color: #181818; padding: 15px;
+            border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+            display: none; box-sizing: border-box;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .project-card:hover .hover-info { display: block; }
+        .project-card:hover .card-img { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+
+        .match-score { color: #46d369; font-weight: bold; margin-bottom: 8px; font-size: 0.8rem; }
+        .short-desc { font-size: 0.75rem; line-height: 1.2; margin-bottom: 12px; }
+
+        /* Skill Pills/Tags */
+        .tag-container { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+        .tag {
+            background-color: #333; padding: 3px 8px; border-radius: 12px;
+            font-size: 0.6rem; color: #ccc; border: 1px solid #444;
+        }
+        .tag-tool { color: #E50914; border-color: #E50914; } /* Red border for tools */
+
+        /* # EDIT PROJECT IMAGES HERE # */
+        .box-somerset .card-img { background: url('Share\ my\ Meals-\ A\ longitudinal\ Analysis\ .jpg') center/cover; }
+        .box-eye .card-img { background: url('eye\ track.jpg') center/cover; }
+        .box-interpreter .card-img { background: url('Impact\ of\ Consistent\ Interpreter.jpg') center/cover; }
+        .box-other .card-img { background: url('Netflix_LoadTime.gif') center/cover; }
 
     </style>
 </head>
@@ -172,11 +130,9 @@
         <div class="banner-content">
             <h1 class="banner-title">Lakshitha G</h1>
             <h2 class="banner-subtitle">Actively looking for more research projects!</h2>
-            
             <p class="banner-desc">
-                Researcher focusing on the narrative within the numbers. From hospital outcomes to behavioral eye-tracking, I bridge the gap between clinical data and actionable business insights.
+                Researcher focusing on the narrative within the numbers. I bridge the gap between clinical data and actionable business insights using advanced statistical modeling.
             </p>
-
             <div class="btn-container">
                 <a href="YOUR_RESUME_URL" class="btn btn-resume"><i class="fas fa-play"></i> Resume</a>
                 <a href="YOUR_LINKEDIN_URL" class="btn btn-linkedin"><i class="fas fa-info-circle"></i> LinkedIn</a>
@@ -185,23 +141,54 @@
     </header>
 
     <section class="row">
-        <h2 class="row-title">Today's Top Picks </h2>
+        <h2 class="row-title">Today's Top Picks</h2>
         <div class="project-list">
             
             <a href="project-somerset.html" class="project-card box-somerset">
-                <div class="card-overlay">Somerset Hospital Outcomes</div>
+                <div class="card-img"></div>
+                <div class="hover-info">
+                    <div class="match-score">98% Match for Data Analyst</div>
+                    <div class="short-desc">Analyzed longitudinal clinical data to identify safety correlations and hospital outcomes.</div>
+                    <div class="tag-container">
+                        <span class="tag tag-tool">Python</span><span class="tag tag-tool">SPSS</span>
+                        <span class="tag">GEE</span><span class="tag">ANCOVA</span><span class="tag">Welch's T-Test</span>
+                    </div>
+                </div>
             </a>
 
             <a href="project-eye-tracking.html" class="project-card box-eye">
-                <div class="card-overlay">Eye-Motion Tracking Study</div>
+                <div class="card-img"></div>
+                <div class="hover-info">
+                    <div class="match-score">95% Match</div>
+                    <div class="short-desc">Used Tobii hardware to map gaze data and heatmaps for behavioral attention analysis.</div>
+                    <div class="tag-container">
+                        <span class="tag tag-tool">Python</span><span class="tag tag-tool">iMotions</span>
+                        <span class="tag">Excel</span><span class="tag">Gaze Mapping</span>
+                    </div>
+                </div>
             </a>
 
             <a href="project-interpreter.html" class="project-card box-interpreter">
-                <div class="card-overlay">Professional Interpreter Impact</div>
+                <div class="card-img"></div>
+                <div class="hover-info">
+                    <div class="match-score">99% Match</div>
+                    <div class="short-desc">Evaluated the impact of interpreter "dose" on hospital outcomes using bias-reduced models.</div>
+                    <div class="tag-container">
+                        <span class="tag tag-tool">Python</span><span class="tag tag-tool">SPSS</span>
+                        <span class="tag">Firth Regression</span><span class="tag">Gamma Regression</span><span class="tag">Odds Ratio</span>
+                    </div>
+                </div>
             </a>
 
             <a href="other-projects.html" class="project-card box-other">
-                <div class="card-overlay">Other Projects</div>
+                <div class="card-img"></div>
+                <div class="hover-info">
+                    <div class="match-score">92% Match</div>
+                    <div class="short-desc">A collection of analytics projects focused on Information Systems and business growth.</div>
+                    <div class="tag-container">
+                        <span class="tag tag-tool">SQL</span><span class="tag tag-tool">Tableau</span>
+                    </div>
+                </div>
             </a>
 
         </div>
