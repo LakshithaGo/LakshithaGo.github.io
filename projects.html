@@ -11,13 +11,14 @@
             background-color: #141414; color: white;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             overflow-x: hidden;
+            min-height: 120vh; /* Adds extra page length to prevent cut-offs */
         }
 
         /* --- NAVBAR --- */
         .navbar {
             position: fixed; top: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 4%; background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+            padding: 20px 4%; background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
             z-index: 1000; box-sizing: border-box;
         }
         .nav-left { display: flex; align-items: center; gap: 40px; }
@@ -27,6 +28,7 @@
         }
         .nav-links { display: flex; gap: 20px; list-style: none; padding: 0; margin: 0; }
         .nav-links a { color: #e5e5e5; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        
         .profile-btn {
             width: 32px; height: 32px; border-radius: 4px; cursor: pointer;
             background: url('https://wallpapers.com/images/high/netflix-profile-pictures-5yup5hd2i60x7ew3.webp') center/cover;
@@ -34,7 +36,7 @@
 
         /* --- BANNER --- */
         .banner {
-            height: 80vh; position: relative;
+            height: 70vh; position: relative;
             background: url('https://i.pinimg.com/originals/45/b0/9a/45b09afcf4097ac02dc5c3b2a063baa6.gif') center/cover;
             display: flex; align-items: center; padding: 0 4%;
             border-bottom: 8px solid #141414; 
@@ -43,64 +45,100 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to right, #141414 10%, transparent 70%);
         }
-        .banner-content { position: relative; max-width: 650px; z-index: 10; }
-        .banner-title { font-size: 4rem; margin: 0; }
-        .banner-subtitle { font-size: 1.4rem; color: #D3D3D3; margin: 10px 0 20px; font-weight: bold; }
-        .banner-desc { font-size: 1.1rem; line-height: 1.4; margin-bottom: 25px; }
+        .banner-content { position: relative; max-width: 600px; z-index: 10; }
+        .banner-title { font-size: 3.5rem; margin: 0; }
+        .banner-subtitle { font-size: 1.2rem; color: #D3D3D3; margin: 10px 0 20px; font-weight: bold; }
+        .banner-desc { font-size: 1rem; line-height: 1.4; margin-bottom: 25px; }
 
         .btn-container { display: flex; gap: 15px; }
         .btn {
-            padding: 10px 25px; border-radius: 4px; font-size: 1.1rem; font-weight: bold;
+            padding: 8px 20px; border-radius: 4px; font-size: 1rem; font-weight: bold;
             cursor: pointer; display: flex; align-items: center; gap: 10px; text-decoration: none;
         }
         .btn-resume { background-color: white; color: black; }
         .btn-linkedin { background-color: rgba(109, 109, 110, 0.8); color: white; }
 
-        /* --- PROJECT CARDS & HOVER EFFECT --- */
-        .row { padding: 40px 4%; }
+        /* --- PROJECT CARDS --- */
+        .row { padding: 20px 4%; }
         .row-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 15px; }
-        .project-list { display: flex; gap: 10px; padding: 40px 0; }
-
-        .project-card {
-            min-width: 300px; height: 170px;
-            background-color: #181818; border-radius: 6px;
-            position: relative; cursor: pointer; text-decoration: none; color: white;
-            transition: transform 0.3s ease, z-index 0.3s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        .project-list { 
+            display: flex; gap: 10px; padding: 50px 0; 
+            overflow-x: auto; scrollbar-width: none; 
         }
 
+        .project-card {
+            min-width: 250px; height: 140px;
+            background-color: #181818; border-radius: 4px;
+            position: relative; cursor: pointer; text-decoration: none; color: white;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+
+        /* HOVER Reveal Logic */
         .project-card:hover {
-            transform: scale(1.4) translateY(-20px);
+            transform: scale(1.3);
             z-index: 500;
         }
 
         .card-img {
             width: 100%; height: 100%; object-fit: cover;
-            border-radius: 6px; transition: opacity 0.3s;
+            border-radius: 4px;
         }
 
-        /* The hidden content that shows on hover */
         .hover-info {
-            position: absolute; top: 100%; left: 0; width: 100%;
-            background-color: #181818; padding: 15px;
-            border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;
+            position: absolute; top: 95%; left: 0; width: 100%;
+            background-color: #181818; padding: 12px;
+            border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;
             display: none; box-sizing: border-box;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
         }
 
         .project-card:hover .hover-info { display: block; }
-        .project-card:hover .card-img { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
 
-        .match-score { color: #46d369; font-weight: bold; margin-bottom: 8px; font-size: 0.8rem; }
-        .short-desc { font-size: 0.75rem; line-height: 1.2; margin-bottom: 12px; }
+        .short-desc { font-size: 0.7rem; line-height: 1.3; margin-bottom: 10px; color: #e5e5e5; }
 
-        /* Skill Pills/Tags */
-        .tag-container { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+        /* SKILL PILLS & GLOW EFFECT */
+        .tag-container { display: flex; flex-wrap: wrap; gap: 4px; }
         .tag {
-            background-color: #333; padding: 3px 8px; border-radius: 12px;
-            font-size: 0.6rem; color: #ccc; border: 1px solid #444;
+            background-color: #333; padding: 2px 6px; border-radius: 4px;
+            font-size: 0.55rem; color: #ccc; border: 1px solid #444;
+            transition: all 0.2s ease;
         }
-        .tag-tool { color: #E50914; border-color: #E50914; } /* Red border for tools */
+
+        /* ## THE RED GLOW EFFECT ON HOVER ## */
+        .tag:hover {
+            background-color: #E50914;
+            color: white;
+            border-color: #E50914;
+            box-shadow: 0 0 10px #E50914;
+            transform: translateY(-2px);
+        }
+
+        /* --- MOBILE ADJUSTMENTS (Typical iPhone Screens) --- */
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 5%; }
+            .banner { height: 50vh; padding-top: 60px; }
+            .banner-title { font-size: 2.5rem; }
+            .banner-subtitle { font-size: 1rem; }
+            
+            .project-list { 
+                gap: 15px; padding: 20px 0;
+                overflow-x: scroll; /* Allow swiping on phone */
+            }
+            
+            /* Disable Hover Zoom on Mobile */
+            .project-card:hover { transform: none; }
+            
+            /* Show basic info permanently or via click */
+            .hover-info { 
+                display: block; position: static; 
+                background: transparent; padding: 8px 0;
+                box-shadow: none;
+            }
+            .short-desc { font-size: 0.8rem; }
+            .project-card { height: auto; min-width: 200px; background: transparent; }
+            .card-img { height: 110px; }
+        }
 
         /* # EDIT PROJECT IMAGES HERE # */
         .box-somerset .card-img { background: url('Share\ my\ Meals-\ A\ longitudinal\ Analysis\ .jpg') center/cover; }
@@ -131,7 +169,7 @@
             <h1 class="banner-title">Lakshitha G</h1>
             <h2 class="banner-subtitle">Actively looking for more research projects!</h2>
             <p class="banner-desc">
-                Researcher focusing on the narrative within the numbers. I bridge the gap between clinical data and actionable business insights using advanced statistical modeling.
+                Bridging the gap between clinical data and actionable business insights. I focus on finding the narrative within the numbers through advanced statistical modeling.
             </p>
             <div class="btn-container">
                 <a href="YOUR_RESUME_URL" class="btn btn-resume"><i class="fas fa-play"></i> Resume</a>
@@ -147,10 +185,9 @@
             <a href="project-somerset.html" class="project-card box-somerset">
                 <div class="card-img"></div>
                 <div class="hover-info">
-                    <div class="match-score">98% Match for Data Analyst</div>
                     <div class="short-desc">Analyzed longitudinal clinical data to identify safety correlations and hospital outcomes.</div>
                     <div class="tag-container">
-                        <span class="tag tag-tool">Python</span><span class="tag tag-tool">SPSS</span>
+                        <span class="tag">Python</span><span class="tag">SPSS</span>
                         <span class="tag">GEE</span><span class="tag">ANCOVA</span><span class="tag">Welch's T-Test</span>
                     </div>
                 </div>
@@ -159,11 +196,10 @@
             <a href="project-eye-tracking.html" class="project-card box-eye">
                 <div class="card-img"></div>
                 <div class="hover-info">
-                    <div class="match-score">95% Match</div>
-                    <div class="short-desc">Used Tobii hardware to map gaze data and heatmaps for behavioral attention analysis.</div>
+                    <div class="short-desc">Mapped gaze data and heatmaps via Tobii hardware for behavioral attention analysis.</div>
                     <div class="tag-container">
-                        <span class="tag tag-tool">Python</span><span class="tag tag-tool">iMotions</span>
-                        <span class="tag">Excel</span><span class="tag">Gaze Mapping</span>
+                        <span class="tag">Python</span><span class="tag">iMotions</span>
+                        <span class="tag">Excel Formulas</span><span class="tag">Gaze Mapping</span>
                     </div>
                 </div>
             </a>
@@ -171,10 +207,9 @@
             <a href="project-interpreter.html" class="project-card box-interpreter">
                 <div class="card-img"></div>
                 <div class="hover-info">
-                    <div class="match-score">99% Match</div>
-                    <div class="short-desc">Evaluated the impact of interpreter "dose" on hospital outcomes using bias-reduced models.</div>
+                    <div class="short-desc">Evaluated the impact of interpreter use on hospital outcomes using bias-reduced models.</div>
                     <div class="tag-container">
-                        <span class="tag tag-tool">Python</span><span class="tag tag-tool">SPSS</span>
+                        <span class="tag">Python</span><span class="tag">SPSS</span>
                         <span class="tag">Firth Regression</span><span class="tag">Gamma Regression</span><span class="tag">Odds Ratio</span>
                     </div>
                 </div>
@@ -183,10 +218,10 @@
             <a href="other-projects.html" class="project-card box-other">
                 <div class="card-img"></div>
                 <div class="hover-info">
-                    <div class="match-score">92% Match</div>
-                    <div class="short-desc">A collection of analytics projects focused on Information Systems and business growth.</div>
+                    <div class="short-desc">A collection of Information Systems and Business Administration analytics projects.</div>
                     <div class="tag-container">
-                        <span class="tag tag-tool">SQL</span><span class="tag tag-tool">Tableau</span>
+                        <span class="tag">SQL</span><span class="tag">Tableau</span>
+                        <span class="tag">Predictive Modeling</span>
                     </div>
                 </div>
             </a>
