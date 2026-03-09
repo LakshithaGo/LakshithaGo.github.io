@@ -11,7 +11,8 @@
             background-color: #141414; color: white;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             overflow-x: hidden;
-            min-height: 120vh; /* Adds extra page length to prevent cut-offs */
+            /* ## PAGE LENGTH: Increased to 150vh to ensure you can always scroll down to see hover content ## */
+            min-height: 150vh; 
         }
 
         /* --- NAVBAR --- */
@@ -22,6 +23,8 @@
             z-index: 1000; box-sizing: border-box;
         }
         .nav-left { display: flex; align-items: center; gap: 40px; }
+        
+        /* # LOGO: Tightened and Darker Red # */
         .logo { 
             color: #B81D24; font-size: 1.8rem; font-weight: bold; 
             text-decoration: none; letter-spacing: -1.5px; 
@@ -29,6 +32,7 @@
         .nav-links { display: flex; gap: 20px; list-style: none; padding: 0; margin: 0; }
         .nav-links a { color: #e5e5e5; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
         
+        /* # PROFILE BUTTON: Links back to home.html # */
         .profile-btn {
             width: 32px; height: 32px; border-radius: 4px; cursor: pointer;
             background: url('https://wallpapers.com/images/high/netflix-profile-pictures-5yup5hd2i60x7ew3.webp') center/cover;
@@ -37,6 +41,7 @@
         /* --- BANNER --- */
         .banner {
             height: 70vh; position: relative;
+            /* ## EDIT MAIN BANNER GIF HERE ## */
             background: url('https://i.pinimg.com/originals/45/b0/9a/45b09afcf4097ac02dc5c3b2a063baa6.gif') center/cover;
             display: flex; align-items: center; padding: 0 4%;
             border-bottom: 8px solid #141414; 
@@ -58,11 +63,12 @@
         .btn-resume { background-color: white; color: black; }
         .btn-linkedin { background-color: rgba(109, 109, 110, 0.8); color: white; }
 
-        /* --- PROJECT CARDS --- */
-        .row { padding: 20px 4%; }
+        /* --- PROJECT ROW --- */
+        .row { padding: 40px 4%; }
         .row-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 15px; }
+        
         .project-list { 
-            display: flex; gap: 10px; padding: 50px 0; 
+            display: flex; gap: 15px; padding: 60px 0 100px 0; /* Extra padding at bottom for hover growth */
             overflow-x: auto; scrollbar-width: none; 
         }
 
@@ -74,7 +80,7 @@
             z-index: 1;
         }
 
-        /* HOVER Reveal Logic */
+        /* ## HOVER SCALE: Set to 1.3 to prevent overlapping other rows ## */
         .project-card:hover {
             transform: scale(1.3);
             z-index: 500;
@@ -86,7 +92,7 @@
         }
 
         .hover-info {
-            position: absolute; top: 95%; left: 0; width: 100%;
+            position: absolute; top: 98%; left: 0; width: 100%;
             background-color: #181818; padding: 12px;
             border-bottom-left-radius: 4px; border-bottom-right-radius: 4px;
             display: none; box-sizing: border-box;
@@ -95,52 +101,41 @@
 
         .project-card:hover .hover-info { display: block; }
 
+        /* ## PROJECT DESCRIPTION TEXT ## */
         .short-desc { font-size: 0.7rem; line-height: 1.3; margin-bottom: 10px; color: #e5e5e5; }
 
-        /* SKILL PILLS & GLOW EFFECT */
+        /* --- TAGS & GLOW --- */
         .tag-container { display: flex; flex-wrap: wrap; gap: 4px; }
         .tag {
-            background-color: #333; padding: 2px 6px; border-radius: 4px;
-            font-size: 0.55rem; color: #ccc; border: 1px solid #444;
+            padding: 2px 6px; border-radius: 4px;
+            font-size: 0.55rem; border: 1px solid #444;
             transition: all 0.2s ease;
         }
 
-        /* ## THE RED GLOW EFFECT ON HOVER ## */
+        /* # COLOR SETTINGS: Lighter gray for Languages, darker for Stats # */
+        .tag-lang { background-color: #555; color: #fff; } /* Light Gray */
+        .tag-stats { background-color: #333; color: #ccc; } /* Original Darker Gray */
+
+        /* ## RED GLOW HACK: Applies to both tag types on hover ## */
         .tag:hover {
             background-color: #E50914;
             color: white;
             border-color: #E50914;
-            box-shadow: 0 0 10px #E50914;
+            box-shadow: 0 0 12px #E50914;
             transform: translateY(-2px);
         }
 
-        /* --- MOBILE ADJUSTMENTS (Typical iPhone Screens) --- */
+        /* --- MOBILE (iPHONE) VIEW --- */
         @media (max-width: 768px) {
-            .navbar { padding: 15px 5%; }
-            .banner { height: 50vh; padding-top: 60px; }
-            .banner-title { font-size: 2.5rem; }
-            .banner-subtitle { font-size: 1rem; }
-            
-            .project-list { 
-                gap: 15px; padding: 20px 0;
-                overflow-x: scroll; /* Allow swiping on phone */
-            }
-            
-            /* Disable Hover Zoom on Mobile */
-            .project-card:hover { transform: none; }
-            
-            /* Show basic info permanently or via click */
-            .hover-info { 
-                display: block; position: static; 
-                background: transparent; padding: 8px 0;
-                box-shadow: none;
-            }
-            .short-desc { font-size: 0.8rem; }
-            .project-card { height: auto; min-width: 200px; background: transparent; }
+            .banner { height: 50vh; }
+            .project-list { padding: 20px 0; overflow-x: scroll; }
+            .project-card:hover { transform: none; } /* Disable zoom on mobile */
+            .hover-info { display: block; position: static; background: transparent; padding: 8px 0; box-shadow: none; }
+            .project-card { height: auto; min-width: 200px; }
             .card-img { height: 110px; }
         }
 
-        /* # EDIT PROJECT IMAGES HERE # */
+        /* ## EDIT PROJECT BOX IMAGES HERE ## */
         .box-somerset .card-img { background: url('Share\ my\ Meals-\ A\ longitudinal\ Analysis\ .jpg') center/cover; }
         .box-eye .card-img { background: url('eye\ track.jpg') center/cover; }
         .box-interpreter .card-img { background: url('Impact\ of\ Consistent\ Interpreter.jpg') center/cover; }
@@ -187,8 +182,8 @@
                 <div class="hover-info">
                     <div class="short-desc">Analyzed longitudinal clinical data to identify safety correlations and hospital outcomes.</div>
                     <div class="tag-container">
-                        <span class="tag">Python</span><span class="tag">SPSS</span>
-                        <span class="tag">GEE</span><span class="tag">ANCOVA</span><span class="tag">Welch's T-Test</span>
+                        <span class="tag tag-lang">Python</span><span class="tag tag-lang">SPSS</span>
+                        <span class="tag tag-stats">GEE</span><span class="tag tag-stats">ANCOVA</span><span class="tag tag-stats">Welch's T-Test</span>
                     </div>
                 </div>
             </a>
@@ -198,8 +193,8 @@
                 <div class="hover-info">
                     <div class="short-desc">Mapped gaze data and heatmaps via Tobii hardware for behavioral attention analysis.</div>
                     <div class="tag-container">
-                        <span class="tag">Python</span><span class="tag">iMotions</span>
-                        <span class="tag">Excel Formulas</span><span class="tag">Gaze Mapping</span>
+                        <span class="tag tag-lang">Python</span><span class="tag tag-lang">iMotions</span>
+                        <span class="tag tag-stats">Excel Formulas</span><span class="tag tag-stats">Gaze Mapping</span>
                     </div>
                 </div>
             </a>
@@ -209,8 +204,8 @@
                 <div class="hover-info">
                     <div class="short-desc">Evaluated the impact of interpreter use on hospital outcomes using bias-reduced models.</div>
                     <div class="tag-container">
-                        <span class="tag">Python</span><span class="tag">SPSS</span>
-                        <span class="tag">Firth Regression</span><span class="tag">Gamma Regression</span><span class="tag">Odds Ratio</span>
+                        <span class="tag tag-lang">Python</span><span class="tag tag-lang">SPSS</span>
+                        <span class="tag tag-stats">Firth Regression</span><span class="tag tag-stats">Gamma Regression</span><span class="tag tag-stats">Odds Ratio</span>
                     </div>
                 </div>
             </a>
@@ -220,8 +215,8 @@
                 <div class="hover-info">
                     <div class="short-desc">A collection of Information Systems and Business Administration analytics projects.</div>
                     <div class="tag-container">
-                        <span class="tag">SQL</span><span class="tag">Tableau</span>
-                        <span class="tag">Predictive Modeling</span>
+                        <span class="tag tag-lang">SQL</span><span class="tag tag-lang">Tableau</span>
+                        <span class="tag tag-stats">Predictive Modeling</span>
                     </div>
                 </div>
             </a>
