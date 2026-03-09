@@ -11,8 +11,8 @@
             background-color: #141414; color: white;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             overflow-x: hidden;
-            /* ## PAGE LENGTH: Increased to 150vh to ensure you can always scroll down to see hover content ## */
-            min-height: 150vh; 
+            /* ## FIXED: Removed the extra min-height to get rid of the "big box" at the bottom ## */
+            min-height: 100vh; 
         }
 
         /* --- NAVBAR --- */
@@ -24,7 +24,6 @@
         }
         .nav-left { display: flex; align-items: center; gap: 40px; }
         
-        /* # LOGO: Tightened and Darker Red # */
         .logo { 
             color: #B81D24; font-size: 1.8rem; font-weight: bold; 
             text-decoration: none; letter-spacing: -1.5px; 
@@ -32,7 +31,6 @@
         .nav-links { display: flex; gap: 20px; list-style: none; padding: 0; margin: 0; }
         .nav-links a { color: #e5e5e5; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
         
-        /* # PROFILE BUTTON: Links back to home.html # */
         .profile-btn {
             width: 32px; height: 32px; border-radius: 4px; cursor: pointer;
             background: url('https://wallpapers.com/images/high/netflix-profile-pictures-5yup5hd2i60x7ew3.webp') center/cover;
@@ -68,7 +66,9 @@
         .row-title { font-size: 1.4rem; font-weight: bold; margin-bottom: 15px; }
         
         .project-list { 
-            display: flex; gap: 15px; padding: 60px 0 100px 0; /* Extra padding at bottom for hover growth */
+            display: flex; gap: 15px; 
+            /* ## FIXED: Reduced bottom padding to keep the background tight to your content ## */
+            padding: 60px 0 20px 0; 
             overflow-x: auto; scrollbar-width: none; 
         }
 
@@ -80,7 +80,6 @@
             z-index: 1;
         }
 
-        /* ## HOVER SCALE: Set to 1.3 to prevent overlapping other rows ## */
         .project-card:hover {
             transform: scale(1.3);
             z-index: 500;
@@ -113,10 +112,9 @@
         }
 
         /* # COLOR SETTINGS: Lighter gray for Languages, darker for Stats # */
-        .tag-lang { background-color: #555; color: #fff; } /* Light Gray */
-        .tag-stats { background-color: #333; color: #ccc; } /* Original Darker Gray */
+        .tag-lang { background-color: #555; color: #fff; } 
+        .tag-stats { background-color: #333; color: #ccc; } 
 
-        /* ## RED GLOW HACK: Applies to both tag types on hover ## */
         .tag:hover {
             background-color: #E50914;
             color: white;
@@ -125,11 +123,11 @@
             transform: translateY(-2px);
         }
 
-        /* --- MOBILE (iPHONE) VIEW --- */
+        /* --- MOBILE VIEW --- */
         @media (max-width: 768px) {
             .banner { height: 50vh; }
             .project-list { padding: 20px 0; overflow-x: scroll; }
-            .project-card:hover { transform: none; } /* Disable zoom on mobile */
+            .project-card:hover { transform: none; }
             .hover-info { display: block; position: static; background: transparent; padding: 8px 0; box-shadow: none; }
             .project-card { height: auto; min-width: 200px; }
             .card-img { height: 110px; }
