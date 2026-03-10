@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | Portfolio-Flix</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
+        /* --- GLOBAL STYLES --- */
         body {
             margin: 0;
             padding: 0;
             background-color: #141414;
             color: white;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            overflow-x: hidden;
+            /* Prevents the whole page from shaking left-to-right */
+            overflow-x: hidden; 
         }
 
         /* --- NAVIGATION BAR --- */
@@ -23,7 +26,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 5%; 
+            padding: 20px 5%;
             background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
             z-index: 1000;
             box-sizing: border-box;
@@ -31,7 +34,7 @@
 
         .nav-left { display: flex; align-items: center; gap: 45px; }
         
-        /* ## LOGO: Darker red, very tight spacing ## */
+        /* LOGO CUSTOMIZATION: Darker red, very tight spacing */
         .logo { 
             color: #B81D24; 
             font-size: 1.8rem; 
@@ -40,16 +43,20 @@
             letter-spacing: -1.5px; 
         }
 
-        .nav-links { display: flex; gap: 25px; list-style: none; padding: 0; margin: 0; }
+        .nav-links { display: flex; gap: 20px; list-style: none; padding: 0; margin: 0; }
         .nav-links a { color: #e5e5e5; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        .nav-links a:hover { color: #b3b3b3; }
+        
+        /* HIDE NAV LINKS ON SMALL MOBILE SCREENS */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .logo { font-size: 1.4rem; }
+        }
 
         /* # EDIT PROFILE ICON IMAGE HERE # */
         .profile-btn {
             width: 32px;
             height: 32px;
             border-radius: 4px;
-            cursor: pointer;
             background: url('assests/profile.jpg') center/cover;
         }
 
@@ -62,13 +69,13 @@
             display: flex;
             align-items: center;
             padding: 0 5%;
-            border-bottom: 10px solid #141414; /* The sharp block separation */
+            border-bottom: 10px solid #141414;
         }
 
         .banner-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to right, #141414 15%, transparent 80%);
+            background: linear-gradient(to right, #141414 10%, transparent 80%);
         }
 
         .banner-content {
@@ -80,122 +87,136 @@
         /* ## EDIT THE MAIN BANNER TEXTS HERE ## */
         .banner-title { font-size: 4.5rem; margin: 0; }
         .banner-subtitle { font-size: 1.5rem; color: #E50914; margin: 10px 0 25px; font-weight: bold; }
-        .banner-desc { font-size: 1.2rem; line-height: 1.5; margin-bottom: 30px; text-shadow: 2px 2px 5px rgba(0,0,0,0.8); }
+        .banner-desc { font-size: 1.1rem; line-height: 1.4; margin-bottom: 25px; }
 
-        .btn-container { display: flex; gap: 20px; }
+        /* MOBILE TWEAKS FOR BANNER */
+        @media (max-width: 600px) {
+            .banner-title { font-size: 2.5rem; }
+            .banner-subtitle { font-size: 1.1rem; }
+            .banner-desc { font-size: 0.9rem; }
+        }
+
+        .btn-container { display: flex; gap: 15px; }
         .btn {
-            padding: 12px 30px;
+            padding: 10px 25px;
             border-radius: 4px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
-            cursor: pointer;
-            border: none;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
         }
         .btn-resume { background-color: white; color: black; }
         .btn-linkedin { background-color: rgba(109, 109, 110, 0.8); color: white; }
 
-        /* --- PROJECT ROWS --- */
-        .row { padding: 50px 5%; }
-        .row-title { font-size: 1.6rem; font-weight: bold; margin-bottom: 20px; }
+        /* --- PROJECT ROW & HORIZONTAL SCROLL --- */
+        .row { padding: 40px 0 40px 5%; }
+        .row-title { font-size: 1.6rem; font-weight: bold; margin-bottom: 15px; }
         
         .project-list {
             display: flex;
-            gap: 12px;
-            padding: 25px 0;
-            overflow-x: visible; /* Allows the hover growth to be seen */
+            gap: 10px;
+            padding: 20px 0;
+            /* ALLOWS HORIZONTAL SCROLLING */
+            overflow-x: auto; 
+            overflow-y: visible;
+            scrollbar-width: none; /* Hides scrollbar on Firefox */
         }
+
+        .project-list::-webkit-scrollbar { display: none; } /* Hides scrollbar on Chrome/Safari */
 
         .project-card {
             min-width: 300px;
             height: 170px;
             border-radius: 4px;
             transition: 0.4s all ease;
-            cursor: pointer;
             position: relative;
-            overflow: hidden;
-            text-decoration: none;
             background-size: cover;
             background-position: center;
-            background-color: #333;
+            flex-shrink: 0; /* Prevents boxes from squishing on mobile */
+        }
+
+        /* MOBILE TWEAKS FOR BOXES */
+        @media (max-width: 600px) {
+            .project-card { min-width: 200px; height: 120px; }
         }
 
         /* --- THE PUNCHY HOVER EFFECT --- */
         .project-card:hover {
-            transform: scale(1.15);
+            transform: scale(1.1);
             z-index: 100;
-            box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.8);
         }
 
+        /* # HIDDEN OVERLAY: Shows text only on hover # */
         .card-overlay {
             position: absolute;
-            bottom: 0; width: 100%;
-            padding: 20px 15px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.95));
-            color: white;
-            transition: 0.3s;
-        }
-
-        /* Hidden description that appears on hover */
-        .card-desc {
-            font-size: 0.85rem;
-            color: #ccc;
-            margin-top: 8px;
-            display: none;
-        }
-
-        .project-card:hover .card-desc { display: block; }
-
-        /* --- SKILLS TAGS: Glowing but not clickable --- */
-        .skills-container {
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            opacity: 0;
+            transition: opacity 0.3s ease;
             display: flex;
-            gap: 8px;
-            margin-top: 10px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            padding: 15px;
+            box-sizing: border-box;
         }
 
-        .skill-tag {
-            background-color: #222;
-            padding: 4px 10px;
-            border-radius: 2px;
-            font-size: 0.75rem;
-            color: #aaa;
-            cursor: default; /* Not a link */
-            transition: 0.3s;
-        }
+        .project-card:hover .card-overlay { opacity: 1; }
 
-        .skill-tag:hover {
+        .card-title { font-size: 1.1rem; font-weight: bold; color: white; margin-bottom: 5px; }
+        .card-desc { font-size: 0.8rem; color: #ccc; margin-bottom: 10px; line-height: 1.2; }
+
+        /* --- SKILLS & STATS CONTAINERS --- */
+        .skills-container { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 5px; }
+        
+        /* Light Gray for Tools */
+        .tool-tag {
+            background-color: #a5a5a5;
             color: white;
-            box-shadow: 0 0 10px rgba(229, 9, 20, 0.8); /* Red glow */
-            background-color: #E50914;
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            cursor: default;
         }
 
-        /* --- FOOTER: SPREAD OUT --- */
+        /* Dark Gray for Stats (Default Card Color) */
+        .stat-tag {
+            background-color: #333;
+            color: #ccc;
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-size: 0.65rem;
+            cursor: default;
+            border: 1px solid #444;
+        }
+
+        .stat-tag:hover { box-shadow: 0 0 8px rgba(229, 9, 20, 0.5); color: white; }
+
+        /* --- FOOTER --- */
         .footer {
-            padding: 70px 15% 40px;
+            padding: 50px 5%;
             color: #808080;
             border-top: 1px solid #333;
-            margin-top: 50px;
+            margin-top: 30px;
         }
 
         .footer-links {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 20px;
             list-style: none;
             padding: 0;
         }
 
-        .footer-links a { color: #808080; text-decoration: none; font-size: 0.9rem; }
-        .footer-links a:hover { text-decoration: underline; }
+        .footer-links a { color: #808080; text-decoration: none; font-size: 0.85rem; }
 
-        /* # EDIT PROJECT BOX PICTURES HERE # */
-        .box-1 { background-image: url('Share my Meals- A longitudinal Analysis.jpg'); }
-        .box-2 { background-image: url('eye track.jpg'); }
-        .box-3 { background-image: url('Impact of Consistent Interpreter.jpg'); }
+        /* # PROJECT BOX PICTURES - EDIT FILENAMES HERE # */
+        .box-1 { background-image: url('Share\ my\ Meals-\ A\ longitudinal\ Analysis.jpg'); }
+        .box-2 { background-image: url('eye\ track.jpg'); }
+        .box-3 { background-image: url('Impact\ of\ Consistent\ Interpreter.jpg'); }
         .box-4 { background-image: url('Netflix_LoadTime.gif'); }
 
     </style>
@@ -223,7 +244,6 @@
             <p class="banner-desc">
                 Bridging the gap between clinical data and actionable business insights. I focus on finding the narrative within the numbers through advanced statistical modeling.
             </p>
-
             <div class="btn-container">
                 <a href="assests/resume.pdf" class="btn btn-resume"><i class="fas fa-play"></i> Resume</a>
                 <a href="YOUR_LINKEDIN_URL" class="btn btn-linkedin"><i class="fas fa-info-circle"></i> LinkedIn</a>
@@ -235,45 +255,60 @@
         <h2 class="row-title">Today's Top Picks</h2>
         <div class="project-list">
             
-            <a href="project-somerset.html" class="project-card box-1">
+            <div class="project-card box-1">
                 <div class="card-overlay">
-                    <strong>Somerset Hospital Outcomes</strong>
-                    <p class="card-desc">Analyzed longitudinal clinical data to identify safety correlations and hospital outcomes.</p>
+                    <span class="card-title">Somerset Hospital Outcomes</span>
+                    <p class="card-desc">Longitudinal analysis of patient safety metrics.</p>
                     <div class="skills-container">
-                        <span class="skill-tag">Python</span><span class="skill-tag">SPSS</span>
+                        <span class="tool-tag">Python</span>
+                        <span class="tool-tag">SPSS</span>
                     </div>
                 </div>
-            </a>
+            </div>
 
-            <a href="project-eye-tracking.html" class="project-card box-2">
+            <div class="project-card box-2">
                 <div class="card-overlay">
-                    <strong>Eye-Motion Tracking Study</strong>
-                    <p class="card-desc">Mapping visual behavioral patterns using heatmap generation and predictive modeling.</p>
+                    <span class="card-title">Eye-Motion Tracking Study</span>
+                    <p class="card-desc">Behavioral heatmaps and visual pattern recognition.</p>
                     <div class="skills-container">
-                        <span class="skill-tag">R</span><span class="skill-tag">Heatmaps</span>
+                        <span class="tool-tag">R</span>
+                        <span class="tool-tag">Tobii</span>
                     </div>
                 </div>
-            </a>
+            </div>
 
-            <a href="project-interpreter.html" class="project-card box-3">
+            <div class="project-card box-3">
                 <div class="card-overlay">
-                    <strong>Interpreter Impact Study</strong>
-                    <p class="card-desc">Researching how professional interpreter use impacts patient recovery and hospital efficiency.</p>
+                    <span class="card-title">Interpreter Impact Study</span>
+                    <p class="card-desc">How professional translation affects recovery efficiency.</p>
+                    
                     <div class="skills-container">
-                        <span class="skill-tag">Healthcare</span><span class="skill-tag">Stats</span>
+                        <span class="tool-tag">Python</span>
+                        <span class="tool-tag">SPSS</span>
+                        <span class="tool-tag">Tableau</span>
+                        <span class="tool-tag">C++</span>
                     </div>
-                </div>
-            </a>
 
-            <a href="other-projects.html" class="project-card box-4">
-                <div class="card-overlay">
-                    <strong>Other Projects</strong>
-                    <p class="card-desc">A collection of Information Systems and Business Administration case studies.</p>
                     <div class="skills-container">
-                        <span class="skill-tag">SQL</span><span class="skill-tag">Tableau</span>
+                        <span class="stat-tag">LLM</span>
+                        <span class="stat-tag">Logistic Regression</span>
+                        <span class="stat-tag">Firth's Logistic</span>
+                        <span class="stat-tag">Gamma Regression</span>
+                        <span class="stat-tag">OLS</span>
                     </div>
                 </div>
-            </a>
+            </div>
+
+            <div class="project-card box-4">
+                <div class="card-overlay">
+                    <span class="card-title">Other Projects</span>
+                    <p class="card-desc">Information Systems case studies and business data.</p>
+                    <div class="skills-container">
+                        <span class="tool-tag">SQL</span>
+                        <span class="tool-tag">Tableau</span>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </section>
@@ -284,10 +319,9 @@
             <li><a href="assests/resume.pdf">Resume</a></li>
             <li><a href="#">My Letterboxd</a></li>
             <li><a href="#">Privacy</a></li>
-            <li><a href="#">Terms of Use</a></li>
             <li><a href="#">Help Center</a></li>
         </ul>
-        <p style="margin-top: 40px; font-size: 0.8rem;">© 2026 Lakshitha G</p>
+        <p style="margin-top: 25px; font-size: 0.75rem;">© 2026 Lakshitha G Portfolio</p>
     </footer>
 
 </body>
