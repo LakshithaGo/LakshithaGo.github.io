@@ -15,7 +15,7 @@
             overflow-x: hidden;
         }
 
-        /* --- NAVBAR --- */
+        /* --- NAVIGATION BAR --- */
         .navbar {
             position: fixed;
             top: 0;
@@ -23,7 +23,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            /* Increased padding to prevent cutoff on wide screens */
             padding: 25px 5%; 
             background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
             z-index: 1000;
@@ -32,7 +31,7 @@
 
         .nav-left { display: flex; align-items: center; gap: 45px; }
         
-        /* ## LOGO: Darker red and tight spacing ## */
+        /* ## LOGO: Darker red, very tight spacing ## */
         .logo { 
             color: #B81D24; 
             font-size: 1.8rem; 
@@ -45,23 +44,25 @@
         .nav-links a { color: #e5e5e5; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: #b3b3b3; }
 
+        /* # EDIT PROFILE ICON IMAGE HERE # */
         .profile-btn {
             width: 32px;
             height: 32px;
             border-radius: 4px;
             cursor: pointer;
-            background: url('assests/profile.jpg') center/cover; /* # EDIT PROFILE IMAGE # */
+            background: url('assests/profile.jpg') center/cover;
         }
 
-        /* --- BANNER --- */
+        /* --- HERO BANNER --- */
         .banner {
             height: 85vh;
             position: relative;
-            background: url('assests/banner.gif') center/cover; /* # EDIT BANNER IMAGE # */
+            /* # EDIT THE MAIN MOVING GIF HERE # */
+            background: url('assests/moving gif.gif') center/cover; 
             display: flex;
             align-items: center;
-            padding: 0 5%; /* Aligned with Navbar */
-            border-bottom: 10px solid #141414; 
+            padding: 0 5%;
+            border-bottom: 10px solid #141414; /* The sharp block separation */
         }
 
         .banner-overlay {
@@ -76,6 +77,7 @@
             z-index: 10;
         }
 
+        /* ## EDIT THE MAIN BANNER TEXTS HERE ## */
         .banner-title { font-size: 4.5rem; margin: 0; }
         .banner-subtitle { font-size: 1.5rem; color: #E50914; margin: 10px 0 25px; font-weight: bold; }
         .banner-desc { font-size: 1.2rem; line-height: 1.5; margin-bottom: 30px; text-shadow: 2px 2px 5px rgba(0,0,0,0.8); }
@@ -96,32 +98,37 @@
         .btn-resume { background-color: white; color: black; }
         .btn-linkedin { background-color: rgba(109, 109, 110, 0.8); color: white; }
 
-        /* --- PROJECT ROW --- */
-        .row { padding: 50px 5%; } /* Aligned with Banner/Nav */
+        /* --- PROJECT ROWS --- */
+        .row { padding: 50px 5%; }
         .row-title { font-size: 1.6rem; font-weight: bold; margin-bottom: 20px; }
         
         .project-list {
             display: flex;
             gap: 12px;
-            overflow-x: auto;
             padding: 25px 0;
+            overflow-x: visible; /* Allows the hover growth to be seen */
         }
-        .project-list::-webkit-scrollbar { display: none; }
 
         .project-card {
             min-width: 300px;
             height: 170px;
             border-radius: 4px;
-            transition: 0.4s transform ease;
+            transition: 0.4s all ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             text-decoration: none;
             background-size: cover;
             background-position: center;
+            background-color: #333;
         }
 
-        .project-card:hover { transform: scale(1.1); z-index: 100; }
+        /* --- THE PUNCHY HOVER EFFECT --- */
+        .project-card:hover {
+            transform: scale(1.15);
+            z-index: 100;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+        }
 
         .card-overlay {
             position: absolute;
@@ -129,9 +136,20 @@
             padding: 20px 15px;
             background: linear-gradient(transparent, rgba(0,0,0,0.95));
             color: white;
+            transition: 0.3s;
         }
 
-        /* --- SKILLS TAGS: Glow effect, no link cursor --- */
+        /* Hidden description that appears on hover */
+        .card-desc {
+            font-size: 0.85rem;
+            color: #ccc;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .project-card:hover .card-desc { display: block; }
+
+        /* --- SKILLS TAGS: Glowing but not clickable --- */
         .skills-container {
             display: flex;
             gap: 8px;
@@ -140,25 +158,23 @@
         }
 
         .skill-tag {
-            background-color: #333;
+            background-color: #222;
             padding: 4px 10px;
             border-radius: 2px;
             font-size: 0.75rem;
-            color: #ccc;
-            /* IMPORTANT: Prevents the clicky cursor */
-            cursor: default; 
-            transition: all 0.3s ease;
+            color: #aaa;
+            cursor: default; /* Not a link */
+            transition: 0.3s;
         }
 
         .skill-tag:hover {
             color: white;
-            box-shadow: 0 0 10px rgba(229, 9, 20, 0.6); /* Red glow on hover */
-            background-color: #444;
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.8); /* Red glow */
         }
 
-        /* --- FOOTER: spread out like Netflix --- */
+        /* --- FOOTER: SPREAD OUT --- */
         .footer {
-            padding: 70px 15% 40px; /* Centered with wide margins */
+            padding: 70px 15% 40px;
             color: #808080;
             border-top: 1px solid #333;
             margin-top: 50px;
@@ -166,25 +182,20 @@
 
         .footer-links {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 side-by-side columns */
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             list-style: none;
             padding: 0;
         }
 
-        .footer-links a {
-            color: #808080;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
+        .footer-links a { color: #808080; text-decoration: none; font-size: 0.9rem; }
         .footer-links a:hover { text-decoration: underline; }
 
-        /* Project Box Assignments (Replace with your uploaded file names) */
-        .box-somerset { background-image: url('assests/somerset.jpg'); }
-        .box-eye { background-image: url('assests/eye.jpg'); }
-        .box-interpreter { background-image: url('assests/interpreter.jpg'); }
-        .box-other { background-image: url('assests/other.jpg'); }
+        /* # EDIT PROJECT BOX PICTURES HERE # */
+        .box-1 { background-image: url('assests/somerset.jpg'); }
+        .box-2 { background-image: url('assests/eye.jpg'); }
+        .box-3 { background-image: url('assests/interpreter.jpg'); }
+        .box-4 { background-image: url('assests/other.jpg'); }
 
     </style>
 </head>
@@ -213,7 +224,7 @@
             </p>
 
             <div class="btn-container">
-                <a href="3-1-2026-Lakshitha Govinda-Resume.pdf" class="btn btn-resume"><i class="fas fa-play"></i> Resume</a>
+                <a href="assests/resume.pdf" class="btn btn-resume"><i class="fas fa-play"></i> Resume</a>
                 <a href="YOUR_LINKEDIN_URL" class="btn btn-linkedin"><i class="fas fa-info-circle"></i> LinkedIn</a>
             </div>
         </div>
@@ -223,42 +234,59 @@
         <h2 class="row-title">Today's Top Picks</h2>
         <div class="project-list">
             
-            <div class="project-card box-somerset">
+            <a href="project-somerset.html" class="project-card box-1">
                 <div class="card-overlay">
                     <strong>Somerset Hospital Outcomes</strong>
+                    <p class="card-desc">Analyzed longitudinal clinical data to identify safety correlations and hospital outcomes.</p>
                     <div class="skills-container">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">SPSS</span>
-                        <span class="skill-tag">GEE</span>
+                        <span class="skill-tag">Python</span><span class="skill-tag">SPSS</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="project-card box-eye">
+            <a href="project-eye-tracking.html" class="project-card box-2">
                 <div class="card-overlay">
                     <strong>Eye-Motion Tracking Study</strong>
+                    <p class="card-desc">Mapping visual behavioral patterns using heatmap generation and predictive modeling.</p>
                     <div class="skills-container">
-                        <span class="skill-tag">R</span>
-                        <span class="skill-tag">Heatmaps</span>
-                        <span class="skill-tag">Behavioral Analytics</span>
+                        <span class="skill-tag">R</span><span class="skill-tag">Heatmaps</span>
                     </div>
                 </div>
-            </div>
+            </a>
+
+            <a href="project-interpreter.html" class="project-card box-3">
+                <div class="card-overlay">
+                    <strong>Interpreter Impact Study</strong>
+                    <p class="card-desc">Researching how professional interpreter use impacts patient recovery and hospital efficiency.</p>
+                    <div class="skills-container">
+                        <span class="skill-tag">Healthcare</span><span class="skill-tag">Stats</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="other-projects.html" class="project-card box-4">
+                <div class="card-overlay">
+                    <strong>Other Projects</strong>
+                    <p class="card-desc">A collection of Information Systems and Business Administration case studies.</p>
+                    <div class="skills-container">
+                        <span class="skill-tag">SQL</span><span class="skill-tag">Tableau</span>
+                    </div>
+                </div>
+            </a>
 
         </div>
     </section>
 
     <footer class="footer">
-        <p style="margin-bottom: 30px;">Questions? Contact Lakshitha directly.</p>
         <ul class="footer-links">
-            <li><a href="mailto:yourname@email.com">Contact Me</a></li>
-            <li><a href="3-1-2026-Lakshitha Govinda-Resume.pdf">Resume</a></li>
-            <li><a href="https://letterboxd.com/yourusername/">My Letterboxd</a></li>
+            <li><a href="mailto:your@email.com">Contact Me</a></li>
+            <li><a href="assests/resume.pdf">Resume</a></li>
+            <li><a href="#">My Letterboxd</a></li>
             <li><a href="#">Privacy</a></li>
             <li><a href="#">Terms of Use</a></li>
             <li><a href="#">Help Center</a></li>
         </ul>
-        <p style="margin-top: 50px; font-size: 0.8rem;">© 2026 Lakshitha G Portfolio</p>
+        <p style="margin-top: 40px; font-size: 0.8rem;">© 2026 Lakshitha G</p>
     </footer>
 
 </body>
