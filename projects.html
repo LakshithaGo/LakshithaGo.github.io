@@ -96,18 +96,35 @@
         .btn-resume { background-color: white; color: black; }
         .btn-linkedin { background-color: rgba(109, 109, 110, 0.8); color: white; }
 
-        /* --- PROJECT ROW --- */
-        .row { padding: 50px 5%; } /* Aligned with Banner/Nav */
-        .row-title { font-size: 1.6rem; font-weight: bold; margin-bottom: 20px; }
+/* --- PROJECT ROW --- */
+        .row { 
+            padding: 50px 5%; 
+        } 
         
+        .row-title { 
+            font-size: 1.6rem; 
+            font-weight: bold; 
+            margin-bottom: 20px; 
+        }
+        
+        /* ## PROJECT LIST: Controls the horizontal scroll ## */
         .project-list {
             display: flex;
             gap: 12px;
             overflow-x: auto;
             padding: 25px 0;
+            /* Makes scrolling smooth and "snaps" to boxes on mobile */
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; /* Extra smoothness for iPhones */
         }
-        .project-list::-webkit-scrollbar { display: none; }
+        
+        /* Hides the scrollbar while keeping the scroll function active */
+        .project-list::-webkit-scrollbar { 
+            display: none; 
+        }
 
+        /* ## PROJECT CARD: The actual movie boxes ## */
         .project-card {
             min-width: 300px;
             height: 170px;
@@ -119,16 +136,34 @@
             text-decoration: none;
             background-size: cover;
             background-position: center;
+            scroll-snap-align: start; /* Helps mobile users land on a box perfectly */
+            flex-shrink: 0; /* Prevents boxes from squishing */
         }
 
-        .project-card:hover { transform: scale(1.1); z-index: 100; }
+        /* Standard Netflix zoom on hover */
+        .project-card:hover { 
+            transform: scale(1.1); 
+            z-index: 100; 
+        }
 
+        /* ## CARD OVERLAY: Contains your one-liner and skills ## */
         .card-overlay {
             position: absolute;
-            bottom: 0; width: 100%;
+            bottom: 0; 
+            width: 100%;
             padding: 20px 15px;
             background: linear-gradient(transparent, rgba(0,0,0,0.95));
             color: white;
+            
+            /* HIDDEN BY DEFAULT: This makes it pop up only on hover */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        /* Trigger for showing the text when mouse is over the box */
+        .project-card:hover .card-overlay { 
+            opacity: 1; 
         }
 
         /* --- SKILLS TAGS: Glow effect, no link cursor --- */
@@ -145,20 +180,40 @@
             border-radius: 2px;
             font-size: 0.75rem;
             color: #ccc;
-            /* IMPORTANT: Prevents the clicky cursor */
             cursor: default; 
             transition: all 0.3s ease;
         }
 
         .skill-tag:hover {
             color: white;
-            box-shadow: 0 0 10px rgba(229, 9, 20, 0.6); /* Red glow on hover */
-            background-color: #E52B12;
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.6); 
+            background-color: #E50914;
+        }
+
+        /* --- MOBILE OPTIMIZATION: Fixes the iPhone view --- */
+        @media (max-width: 768px) {
+            .row { 
+                padding: 30px 5%; 
+            }
+            .row-title { 
+                font-size: 1.3rem; 
+            }
+            /* Adjusts box size so they fit better on phone screens */
+            .project-card { 
+                min-width: 240px; 
+                height: 140px; 
+            }
+            .footer {
+                padding: 40px 5%;
+            }
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile instead of 3 */
+            }
         }
 
         /* --- FOOTER: spread out like Netflix --- */
         .footer {
-            padding: 70px 15% 40px; /* Centered with wide margins */
+            padding: 70px 15% 40px; 
             color: #808080;
             border-top: 1px solid #333;
             margin-top: 50px;
@@ -166,7 +221,7 @@
 
         .footer-links {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 side-by-side columns */
+            grid-template-columns: repeat(3, 1fr); 
             gap: 20px;
             list-style: none;
             padding: 0;
@@ -178,16 +233,15 @@
             font-size: 0.9rem;
         }
 
-        .footer-links a:hover { text-decoration: underline; }
+        .footer-links a:hover { 
+            text-decoration: underline; 
+        }
 
-        /* Project Box Assignments (Replace with your uploaded file names) */
-        .box-sharemymeals { background-image: url('Share my Meals- A longitudinal Analysis.jpg'); }
-        .box-eye { background-image: url('eye track.jpg'); }
-        .box-interpreter { background-image: url('Impact of Consistent Interpreter.jpg'); }
+        /* ## PROJECT BOX IMAGES: Update your filenames here ## */
+        .box-Interpreter\ Use { background-image: url('Impact of Consistent Interpreter.jpg'); }
+        .box-eye\ tracking { background-image: url('eye track.jpg'); }
+        .box-Share\ My\ Meals { background-image: url('Share my Meals- A longitudinal Analysis.jpg'); }
         .box-other { background-image: url('Netflix_LoadTime.gif'); }
-
-    </style>
-</head>
 <body>
 
     <nav class="navbar">
@@ -214,7 +268,7 @@
 
             <div class="btn-container">
                 <a href="3-1-2026-Lakshitha Govinda-Resume.pdf" class="btn btn-resume"><i class="fas fa-play"></i> Resume</a>
-                <a href="linkedin.com/in/lakshitha-g-747b64224" class="btn btn-linkedin"><i class="fas fa-info-circle"></i> LinkedIn</a>
+                <a href="https://linkedin.com/in/lakshitha-g-747b64224" class="btn btn-linkedin"><i class="fas fa-info-circle"></i> LinkedIn</a>
             </div>
         </div>
     </header>
@@ -223,50 +277,56 @@
         <h2 class="row-title">Today's Top Picks</h2>
         <div class="project-list">
             
-            <div class="project-card box-sharemymeals">
+            <div class="project-card box-Interpreter Use">
                 <div class="card-overlay">
-                    <strong>Somerset Hospital Outcomes</strong>
+                    <p class="card-desc">Researching how professional interpreter use impacts patient recovery and hospital efficiency</p>
                     <div class="skills-container">
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">SPSS</span>
-                        <span class="skill-tag">GEE</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">Logistic Regression</span>
+                        <span class="skill-tag">Gamma Regression</span>
                     </div>
                 </div>
             </div>
 
-            <div class="project-card box-eye">
+            <div class="project-card box-eye tracking">
                 <div class="card-overlay">
-                    <strong>Eye-Motion Tracking Study</strong>
+                    <p class="card-desc">Mapping visual behavioral patterns using heatmap generation and predictive modeling.</p>
                     <div class="skills-container">
-                        <span class="skill-tag">R</span>
-                        <span class="skill-tag">Heatmaps</span>
-                        <span class="skill-tag">Behavioral Analytics</span>
+                        <span class="skill-tag">Biometric Software</span>
+                        <span class="skill-tag">SPSS</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Excel</span>
                     </div>
                 </div>
             </div>
  
-            <div class="project-card box-interpreter">
+            <div class="project-card box-Share My Meals">
                 <div class="card-overlay">
-                    <strong>Interpreter Outcomes</strong>
+                    <p class="card-desc">Analyzing longitudinal clinical data to identify safety correlations and hospital outcomes</p>
                     <div class="skills-container">
-                        <span class="skill-tag">R</span>
-                        <span class="skill-tag">Heatmaps</span>
-                        <span class="skill-tag">Behavioral Analytics</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">SPSS</span>
+                        <span class="skill-tag">LLM</span>
+                        <span class="skill-tag">Longitudinal Analysis</span>
                     </div>
                 </div>
             </div>
         
             <div class="project-card box-other">
                 <div class="card-overlay">
-                    <strong>Works in Progress</strong>
+                    <p class="card-desc">Projects that I'm still working on!</p>
                     <div class="skills-container">
-                        <span class="skill-tag">R</span>
-                        <span class="skill-tag">Heatmaps</span>
-                        <span class="skill-tag">Behavioral Analytics</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Analytics</span>
                     </div>
                 </div>
             </div>
             
+        </div>
     </section>
 
     <footer class="footer">
