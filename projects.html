@@ -155,7 +155,7 @@
             flex-wrap: wrap;
         }
 
-        /* Tool Tags: Light Gray */
+        /* Tool Tags: Light Gray + Red Glow on Hover */
         .tool-tag {
             background-color: #a5a5a5;
             color: white;
@@ -164,9 +164,16 @@
             font-size: 0.7rem;
             font-weight: bold;
             cursor: default;
+            transition: all 0.3s ease;
         }
 
-        /* Stat Tags: Dark Gray */
+        .tool-tag:hover { 
+            color: white; 
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.6); 
+            background-color: #E50914; 
+        }
+
+        /* Stat Tags: Dark Gray + Red Glow on Hover */
         .stat-tag {
             background-color: #333;
             padding: 3px 8px;
@@ -178,7 +185,11 @@
             border: 1px solid #444;
         }
 
-        .stat-tag:hover { color: white; box-shadow: 0 0 10px rgba(229, 9, 20, 0.6); background-color: #E50914; }
+        .stat-tag:hover { 
+            color: white; 
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.6); 
+            background-color: #E50914; 
+        }
 
         /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
@@ -208,13 +219,16 @@
         .footer-links a { color: #808080; text-decoration: none; font-size: 0.9rem; }
         .footer-links a:hover { text-decoration: underline; }
 
-        /* # UPDATE BOX IMAGES HERE # */
-        .box-Interpreter\ Use { background-image: url('Impact of Consistent Interpreter.jpg'); }
-        .box-eye\ tracking { background-image: url('eye track.jpg'); }
-        .box-Share\ My\ Meals { background-image: url('Share my Meals- A longitudinal Analysis.jpg'); }
+        /* # UPDATE BOX IMAGES HERE: Filenames are preserved, class names are fixed # */
+        .box-interpreter { background-image: url('Impact of Consistent Interpreter.jpg'); }
+        .box-eye { background-image: url('eye track.jpg'); }
+        .box-meals { background-image: url('Share my Meals- A longitudinal Analysis.jpg'); }
         .box-other { background-image: url('Netflix_LoadTime.gif'); }
 
-    </style> </head> <body>
+    </style>
+</head>
+
+<body>
 
     <nav class="navbar">
         <div class="nav-left">
@@ -249,7 +263,7 @@
         <h2 class="row-title">Today's Top Picks</h2>
         <div class="project-list">
             
-            <div class="project-card box-Interpreter\ Use">
+            <div class="project-card box-interpreter">
                 <div class="card-overlay">
                     <p class="card-desc">Researching how professional interpreter use impacts patient recovery and hospital efficiency</p>
                     <div class="skills-container">
@@ -266,7 +280,7 @@
                 </div>
             </div>
 
-            <div class="project-card box-eye\ tracking">
+            <div class="project-card box-eye">
                 <div class="card-overlay">
                     <p class="card-desc">Mapping visual behavioral patterns using heatmap generation and predictive modeling.</p>
                     <div class="skills-container">
@@ -277,7 +291,7 @@
                 </div>
             </div>
  
-            <div class="project-card box-Share\ My\ Meals">
+            <div class="project-card box-meals">
                 <div class="card-overlay">
                     <p class="card-desc">Analyzing longitudinal clinical data to identify safety correlations and hospital outcomes</p>
                     <div class="skills-container">
