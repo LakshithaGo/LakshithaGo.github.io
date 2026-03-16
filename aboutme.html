@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Lakshitha | Portfolio-Flix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #141414;
+            color: white;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- NAVBAR & BACK BUTTON --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 20px 5%; 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .back-btn {
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 20px;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .logo { 
+            color: #B81D24; 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            text-decoration: none; 
+            letter-spacing: -1.5px; 
+        }
+
+        /* --- HERO INFO SECTION --- */
+        .info-hero {
+            padding: 120px 5% 50px;
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+            border-bottom: 2px solid #333;
+        }
+
+        /* # EDIT HERO PROFILE PHOTO HERE # */
+        .hero-image {
+            width: 300px;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        .hero-details { max-width: 700px; }
+
+        .title { font-size: 3.5rem; margin: 0 0 10px 0; }
+        
+        .match-score { color: #46d369; font-weight: bold; font-size: 1.1rem; margin-right: 15px; }
+        .year { color: #a3a3a3; font-weight: bold; margin-right: 15px; }
+
+        /* THE MATURITY BANNER */
+        .maturity-banner {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(255,255,255,0.1);
+            border-left: 3px solid #E50914;
+            padding: 5px 10px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .maturity-rating { font-weight: bold; border: 1px solid white; padding: 2px 5px; margin-right: 10px; border-radius: 3px;}
+        .maturity-tags { color: #ccc; }
+
+        .bio-text { font-size: 1.1rem; line-height: 1.6; color: #e5e5e5; margin-bottom: 25px; }
+
+        /* PLAY BUTTON */
+        .btn-play {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: white;
+            color: black;
+            padding: 10px 30px;
+            border-radius: 4px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.2s;
+            margin-bottom: 20px;
+        }
+
+        .btn-play:hover { background-color: rgba(255,255,255,0.7); }
+
+        .meta-data { font-size: 0.9rem; margin-bottom: 8px; color: #ccc; }
+        .meta-label { color: #777; }
+
+        /* --- EPISODES SECTION --- */
+        .episodes-section { padding: 40px 5% 80px; }
+
+        .episodes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .episodes-title { font-size: 1.5rem; font-weight: bold; margin: 0; }
+
+        /* DROPDOWN SELECTOR */
+        .season-selector {
+            background-color: #242424;
+            color: white;
+            border: 1px solid #444;
+            padding: 10px 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .season-container {
+            display: none; /* Hidden by default, JS reveals them */
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .season-container.active { display: block; }
+
+        /* INDIVIDUAL EPISODE ROWS */
+        .episode-row {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #222;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .episode-row:hover { background-color: #222; }
+
+        .episode-number {
+            font-size: 1.5rem;
+            color: #777;
+            width: 40px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* # EDIT EPISODE THUMBNAILS HERE # */
+        .episode-thumb {
+            width: 160px;
+            height: 90px;
+            border-radius: 4px;
+            object-fit: cover;
+            margin: 0 20px;
+            background-color: #333; /* Placeholder color until you add images */
+        }
+
+        .episode-info { flex-grow: 1; }
+        
+        .episode-title-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .ep-title { font-size: 1.1rem; font-weight: bold; margin: 0; }
+        .ep-duration { font-size: 0.9rem; color: #a3a3a3; }
+        
+        .ep-desc { font-size: 0.9rem; color: #ccc; line-height: 1.4; margin: 0; max-width: 80%; }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 768px) {
+            .info-hero { flex-direction: column; align-items: center; text-align: center; padding-top: 100px; }
+            .hero-image { width: 200px; }
+            .maturity-banner { justify-content: center; text-align: left; }
+            
+            .episode-row { flex-direction: column; align-items: flex-start; position: relative; padding: 15px 10px; }
+            .episode-number { position: absolute; top: 15px; left: 10px; font-size: 1.2rem; }
+            .episode-thumb { width: 100%; height: auto; aspect-ratio: 16/9; margin: 30px 0 15px 0; }
+            .ep-desc { max-width: 100%; }
+            .ep-duration { position: absolute; top: 15px; right: 10px; }
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="projects.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+        <a href="index.html" class="logo">LAKSHITHA G</a>
+    </nav>
+
+    <header class="info-hero">
+        <img src="assests/about_me_photo.jpg" alt="Lakshitha" class="hero-image">
+        
+        <div class="hero-details">
+            <h1 class="title">Lakshitha Govinda</h1>
+            
+            <div>
+                <span class="match-score">98% Match</span>
+                <span class="year">2026</span>
+                <span style="border: 1px solid #777; padding: 1px 4px; font-size: 0.8rem; border-radius: 3px;">HD</span>
+            </div>
+
+            <div class="maturity-banner">
+                <span class="maturity-rating">TV-PG</span>
+                <span class="maturity-tags">analytical rigor, always multitasking, strategic modeling, coffee-fueled, nocturnal, horror enthusiast</span>
+            </div>
+
+            <a href="#" class="btn-play"><i class="fas fa-play"></i> Play Intro</a>
+
+            <p class="bio-text">
+                I am currently pursuing my Master’s in Information Systems and Business Administration at Rider University while conducting impactful research for RWJ and Rider. While my primary interest lies in healthcare outcomes, my Business Analytics foundation allows me to analyze operations at any level of business. I've built a diverse "mixed genre" career—from tech startups to waitressing—giving me a ground-level perspective on how data impacts the real world.
+            </p>
+
+            <div class="meta-data"><span class="meta-label">Cast:</span> Data Analyst, PM Intern, Tutor, Waitress, Tax Preparer.</div>
+            <div class="meta-data"><span class="meta-label">Genres:</span> Horror Movies & Books, Fitness, Cafe-Hopping, Animal Welfare.</div>
+            <div class="meta-data"><span class="meta-label">Fun Fact:</span> I share my home with three birds and actively work with cats at my local shelter!</div>
+        </div>
+    </header>
+
+    <section class="episodes-section">
+        
+        <div class="episodes-header">
+            <h2 class="episodes-title">Episodes</h2>
+            
+            <select class="season-selector" id="seasonSelect" onchange="changeSeason()">
+                <option value="season1">Season 1: The Foundation</option>
+                <option value="season2">Season 2: The Pivot</option>
+                <option value="season3" selected>Season 3: The Deep Dive</option> </select>
+        </div>
+
+        <div id="season1" class="season-container">
+            
+            <div class="episode-row">
+                <div class="episode-number">1</div>
+                <img src="assests/bakery.jpg" alt="Bakery" class="episode-thumb">
+                <div class="episode-info">
+                    <div class="episode-title-bar">
+                        <h3 class="ep-title">Working at the Bakery</h3>
+                        <span class="ep-duration">1y</span>
+                    </div>
+                    <p class="ep-desc">Customer service, early mornings, and managing fast-paced retail operations.</p>
+                </div>
+            </div>
+
+            <div class="episode-row">
+                <div class="episode-number">2</div>
+                <img src="assests/tutoring1.jpg" alt="Tutor" class="episode-thumb">
+                <div class="episode-info">
+                    <div class="episode-title-bar">
+                        <h3 class="ep-title">Tutoring: SAT Level Math & English</h3>
+                        <span class="ep-duration">3y</span>
+                    </div>
+                    <p class="ep-desc">Breaking down complex formulas and language rules for advanced high school students.</p>
+                </div>
+            </div>
+
+            <div class="episode-row">
+                <div class="episode-number">3</div>
+                <img src="assests/tutoring2.jpg" alt="Tutor" class="episode-thumb">
+                <div class="episode-info">
+                    <div class="episode-title-bar">
+                        <h3 class="ep-title">Tutoring: Coding & Web Applications</h3>
+                        <span class="ep-duration">3y</span>
+                    </div>
+                    <p class="ep-desc">Teaching the fundamentals of logic, syntax, and application development.</p>
+                </div>
+            </div>
+
+            <div class="episode-row">
+                <div class="episode-number">4</div>
+                <img src="assests/tutoring3.jpg" alt="Tutor" class="episode-thumb">
+                <div class="episode-info">
+                    <div class="episode-title-bar">
+                        <h3 class="ep-title">Tutoring: K-12 Grades</h3>
+                        <span class="ep-duration">3y</span>
+                    </div>
+                    <p class="ep-desc">Adapting teaching methods for various learning styles across foundational subjects.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="season2" class="season-container">
+            
+            <div class="episode-row">
+                <div class="episode-number">5</div>
+                <img src="assests/startup.jpg" alt="Startup" class="episode-thumb">
+                <div class="episode-info">
+                    <div class="episode-title-bar">
+                        <h3 class="ep-title">The Tech Startup Pivot</h3>
+                        <span class="ep-duration">3y</span>
+                    </div>
+                    <p class="ep-desc">Wearing multiple hats and adapting to the fast-paced, high-stakes environment of a growing tech company.</p>
+                </div>
+            </div>
+
+            <div class="episode-row">
+                <div class="episode-number">6</div>
+                <img src="assests/ecommerce.jpg" alt="E-commerce" class="episode-thumb">
+                <div class="episode-info">
+                    <div class="episode-title-bar">
+                        <h3 class="ep-title">Easy Event Planning (E-commerce Remote Internship)</h3>
+                        <span class="ep-duration">6m</span>
+                    </div>
+                    <p class="ep-desc">Handled Project Management deliverables and coordinated remote team operations.</p>
+                </div>
+            </div>
+
+            <div class="episode-row">
+                <div class="episode-number">7</div>
+                <img src="assests/waitressing.jpg" alt="Restaurant" class="episode-thumb">
+                <div class="episode-info">
+                    <div class="episode-title-bar">
+                        <h3 class="ep-title">Waitressing at an NYT Top 50 Restaurant</h3>
+                        <span class="ep-duration">8w</span>
+                    </div>
+                    <p class="ep-desc">Intense, hectic multitasking in one of America's best restaurants. Communication under pressure.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="season3" class="season-container active">
+            
+            <div class="episode-row">
+                <div class="episode-number">8</div>
+                <img src="assests/eye_track_research.jpg" alt="Eye Track" class="episode-thumb">
+                <div class="episode-info">
+                    <div class="episode-title-bar">
+                        <h3 class="ep-title">First Research Exp! Eye-Motion Tracking</h3>
+                        <span class="ep-duration">Current (2y)</span>
+                    </div>
+                    <p class="ep-desc">Diving into the world of behavioral patterns, heatmaps, and predictive human-computer interaction.</p>
+                </div>
+            </div>
+
+            <div class="episode-row">
+                <div class="episode-number">9</div>
+                <img src="assests/rwj_research.jpg" alt="RWJ" class="episode-thumb">
+                <div class="episode-info">
+                    <div class="episode-title-bar">
+                        <h3 class="ep-title">Research Clinical Outcomes at RWJ</h3>
+                        <span class="ep-duration">Current (5m)</span>
+                    </div>
+                    <p class="ep-desc">Analyzing critical healthcare data to find the narrative behind hospital efficiency and patient recovery.</p>
+                </div>
+            </div>
+
+            <div class="episode-row">
+                <div class="episode-number">10</div>
+                <img src="assests/meals_research.jpg" alt="Meals" class="episode-thumb">
+                <div class="episode-info">
+                    <div class="episode-title-bar">
+                        <h3 class="ep-title">Research: Share My Meals</h3>
+                        <span class="ep-duration">Current (5m)</span>
+                    </div>
+                    <p class="ep-desc">A longitudinal study focusing on the impact and analytics of community meal-sharing programs.</p>
+                </div>
+            </div>
+
+            <div class="episode-row">
+                <div class="episode-number">11</div>
+                <img src="assests/tax_grind.jpg" alt="Tax" class="episode-thumb">
+                <div class="episode-info">
+                    <div class="episode-title-bar">
+                        <h3 class="ep-title">The Professional Grind (Tax Firm Role)</h3>
+                        <span class="ep-duration">Current (3m)</span>
+                    </div>
+                    <p class="ep-desc">Managing financial data, client relations, and extreme attention to numerical detail on a daily basis.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        function changeSeason() {
+            // Get the value from the dropdown (e.g., "season2")
+            var selectedSeason = document.getElementById("seasonSelect").value;
+            
+            // Hide all season containers
+            var allSeasons = document.getElementsByClassName("season-container");
+            for (var i = 0; i < allSeasons.length; i++) {
+                allSeasons[i].classList.remove("active");
+            }
+            
+            // Show only the selected season container
+            document.getElementById(selectedSeason).classList.add("active");
+        }
+    </script>
+
+</body>
+</html>
