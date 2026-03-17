@@ -23,10 +23,9 @@
             width: 100%;
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Ensures profile button/logo spacing */
+            justify-content: space-between; 
             padding: 20px 5%; 
-            background-color: #141414; 
-            border-bottom: 1px solid #333;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
             z-index: 1000;
             box-sizing: border-box;
         }
@@ -52,7 +51,6 @@
             letter-spacing: -1.5px; 
         }
 
-        /* Nav links style added back to match other pages */
         .nav-links { display: flex; gap: 25px; list-style: none; padding: 0; margin: 0; }
         .nav-links a { color: #e5e5e5; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: #b3b3b3; }
@@ -62,30 +60,42 @@
             height: 32px;
             border-radius: 4px;
             cursor: pointer;
-            background: url('Profile_Pic.jpg') center/cover;
+            background: url('eye track.jpg') center/cover;
         }
 
-        /* --- HERO INFO SECTION --- */
+        /* --- HERO INFO SECTION WITH CINEMATIC GIF --- */
         .info-hero {
             padding: 120px 5% 50px;
             display: flex;
             gap: 50px;
             align-items: flex-start;
-            border-bottom: 2px solid #333;
+            
+            /* THE CINEMATIC BACKGROUND MAGIC */
+            background-image: 
+                linear-gradient(to bottom, rgba(20, 20, 20, 0.75) 0%, rgba(20, 20, 20, 0.85) 75%, #141414 100%),
+                url('https://i.redd.it/4mk1be0pd8gd1.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        /* # EDIT HERO PROFILE PHOTO HERE # */
         .hero-image {
             width: 300px;
             border-radius: 4px;
             box-shadow: 0 0 20px rgba(0,0,0,0.8);
             flex-shrink: 0;
             object-fit: cover;
+            position: relative;
+            z-index: 10;
         }
 
-        .hero-details { max-width: 700px; }
+        .hero-details { 
+            max-width: 700px; 
+            position: relative;
+            z-index: 10;
+        }
 
-        .title { font-size: 3.5rem; margin: 0 0 10px 0; }
+        .title { font-size: 3.5rem; margin: 0 0 10px 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); }
         
         .match-score { color: #46d369; font-weight: bold; font-size: 1.1rem; margin-right: 15px; }
         .year { color: #a3a3a3; font-weight: bold; margin-right: 15px; }
@@ -100,12 +110,13 @@
             margin: 15px 0;
             font-size: 0.9rem;
             border-radius: 0 4px 4px 0;
+            backdrop-filter: blur(5px);
         }
 
         .maturity-rating { font-weight: bold; border: 1px solid white; padding: 2px 5px; margin-right: 10px; border-radius: 3px;}
-        .maturity-tags { color: #ccc; }
+        .maturity-tags { color: #ccc; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); }
 
-        .bio-text { font-size: 1.1rem; line-height: 1.6; color: #e5e5e5; margin-bottom: 25px; }
+        .bio-text { font-size: 1.1rem; line-height: 1.6; color: #e5e5e5; margin-bottom: 25px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
 
         /* PLAY BUTTON */
         .btn-play {
@@ -121,15 +132,16 @@
             text-decoration: none;
             transition: 0.2s;
             margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
         .btn-play:hover { background-color: rgba(255,255,255,0.7); }
 
-        .meta-data { font-size: 0.9rem; margin-bottom: 8px; color: #ccc; }
-        .meta-label { color: #777; }
+        .meta-data { font-size: 0.9rem; margin-bottom: 8px; color: #ccc; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); }
+        .meta-label { color: #999; }
 
         /* --- EPISODES SECTION --- */
-        .episodes-section { padding: 40px 5% 80px; }
+        .episodes-section { padding: 40px 5% 80px; position: relative; z-index: 10; }
 
         .episodes-header {
             display: flex;
@@ -156,7 +168,7 @@
         }
 
         .season-container {
-            display: none; /* Hidden by default, JS reveals them */
+            display: none; 
             animation: fadeIn 0.4s ease-in;
         }
 
@@ -182,16 +194,16 @@
             text-align: center;
         }
 
-        /* # EDIT EPISODE THUMBNAILS HERE # */
         .episode-thumb {
             width: 160px;
+            min-width: 160px; 
             height: 90px;
-            flex-shrink: 0;
+            flex-shrink: 0;   
             border-radius: 4px;
             object-fit: cover;
             margin: 0 20px;
-            background-color: #333; /* Placeholder color until you add images */
-            border: 1px solid #333; /* Adds a subtle border like Netflix */
+            background-color: #333; 
+            border: 1px solid #333; 
         }
 
         .episode-info { flex-grow: 1; }
@@ -282,7 +294,8 @@
             <select class="season-selector" id="seasonSelect" onchange="changeSeason()">
                 <option value="season1">Season 1: The Foundation</option>
                 <option value="season2">Season 2: The Pivot</option>
-                <option value="season3" selected>Season 3: The Deep Dive</option> </select>
+                <option value="season3" selected>Season 3: The Deep Dive</option> 
+            </select>
         </div>
 
         <div id="season1" class="season-container">
