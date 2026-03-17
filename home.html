@@ -15,13 +15,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Changed from height to min-height for mobile scrolling */
             overflow: hidden;
         }
 
         .profile-container {
             text-align: center;
             animation: fadeIn 1.2s ease-in;
+            padding: 20px;
         }
 
         h1 {
@@ -37,13 +38,17 @@
             justify-content: center;
             list-style: none;
             padding: 0;
+            flex-wrap: wrap; /* THIS IS KEY: Allows boxes to drop to the next line on mobile */
         }
 
         .profile-card {
             text-decoration: none;
             color: #808080;
             transition: color 0.3s;
-            width: 160px; /* Standardized width for PC browsers */
+            width: 160px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .profile-card:hover {
@@ -54,7 +59,7 @@
             width: 160px;
             height: 160px;
             border-radius: 4px;
-            overflow: hidden; /* Keeps the images inside the square */
+            overflow: hidden; 
             margin-bottom: 15px;
             position: relative;
             box-sizing: border-box;
@@ -62,7 +67,6 @@
             transition: border 0.1s ease-in;
         }
 
-        /* Hover effect exactly like Netflix */
         .profile-card:hover .icon-box {
             border: 3px solid white;
         }
@@ -97,7 +101,6 @@
             margin-top: 10px;
         }
 
-        /* Bottom Button Style */
         .manage-button {
             margin-top: 5rem;
             background: transparent;
@@ -119,6 +122,47 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(1.05); }
             to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 600px) {
+            body {
+                overflow-y: auto; /* Lets the user scroll if the screen is very short */
+                align-items: flex-start; /* Pushes content up so it doesn't get cut off */
+                padding-top: 40px;
+            }
+
+            h1 {
+                font-size: 2.2rem; /* Shrinks the title */
+                margin-bottom: 2rem;
+            }
+
+            .profile-list {
+                gap: 15px; /* Brings boxes slightly closer together */
+            }
+
+            .profile-card {
+                width: 120px; /* Shrinks the card width */
+            }
+
+            .icon-box {
+                width: 120px; /* Shrinks the image box */
+                height: 120px;
+            }
+
+            .plus-icon {
+                font-size: 3.5rem; /* Shrinks the plus icon */
+            }
+
+            .profile-name {
+                font-size: 1rem;
+            }
+
+            .manage-button {
+                margin-top: 3rem;
+                padding: 10px 25px;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
