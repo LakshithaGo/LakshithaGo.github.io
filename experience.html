@@ -1,318 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experience | Portfolio-Flix</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        /* --- GLOBAL STYLES --- */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #141414;
-            color: white;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            overflow-x: hidden;
-            display: flex; 
-        }
-
-        /* --- TOP NAVBAR (From projects.html) --- */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%; 
-            background-color: #141414; /* Solid background so scrolling text doesn't show through */
-            border-bottom: 1px solid #333;
-            z-index: 3000;
-            box-sizing: border-box;
-        }
-
-        .nav-left { display: flex; align-items: center; gap: 45px; }
-        
-        .logo { 
-            color: #B81D24; 
-            font-size: 1.8rem; 
-            font-weight: bold; 
-            text-decoration: none; 
-            letter-spacing: -1.5px; 
-        }
-
-        .nav-links { display: flex; gap: 25px; list-style: none; padding: 0; margin: 0; }
-        .nav-links a { color: #e5e5e5; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
-        .nav-links a:hover { color: #b3b3b3; }
-
-        .profile-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 4px;
-            cursor: pointer;
-            background: url('eye track.jpg') center/cover;
-        }
-
-        /* --- LEFT SIDEBAR (Search & Trending) --- */
-        .sidebar {
-            width: 260px;
-            height: calc(100vh - 75px); /* Full height minus the top navbar */
-            background-color: #0b0b0b;
-            position: fixed;
-            top: 75px; /* Sits right below the top navbar */
-            left: 0;
-            padding: 30px 20px;
-            box-sizing: border-box;
-            border-right: 1px solid #222;
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* SEARCH BAR */
-        .search-container {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .search-icon {
-            position: absolute;
-            top: 50%;
-            left: 12px;
-            transform: translateY(-50%);
-            color: #888;
-        }
-
-        .search-input {
-            width: 100%;
-            background-color: #222;
-            border: 1px solid #444;
-            color: white;
-            padding: 12px 12px 12px 35px;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            box-sizing: border-box;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .search-input:focus {
-            border-color: white;
-            background-color: #333;
-        }
-
-        /* TRENDING TAGS */
-        .trending-title {
-            font-size: 0.85rem;
-            color: #808080;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        .tags-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 40px;
-        }
-
-        .trend-tag {
-            background-color: #333;
-            color: #ccc;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .trend-tag:hover {
-            background-color: #E50914;
-            color: white;
-        }
-
-        /* --- MAIN CONTENT AREA --- */
-        .main-content {
-            margin-left: 260px; 
-            width: calc(100% - 260px);
-            padding: 110px 5% 40px; /* Top padding to ensure it clears the fixed Navbar */
-            box-sizing: border-box;
-        }
-
-        .page-title {
-            font-size: 3rem;
-            margin-top: 0;
-            margin-bottom: 5px;
-        }
-
-        .page-subtitle {
-            font-size: 1.1rem;
-            color: #808080;
-            margin-bottom: 40px;
-        }
-
-        /* --- GENRE ROWS --- */
-        .genre-row { margin-bottom: 50px; }
-        .row-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 15px; }
-
-        .card-slider {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            padding-bottom: 25px;
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .card-slider::-webkit-scrollbar { display: none; }
-
-        /* --- THE EXPERIENCE CARDS --- */
-        .exp-card {
-            min-width: 340px;
-            height: 200px;
-            border-radius: 4px;
-            background-color: #222;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            cursor: pointer;
-            scroll-snap-align: start;
-            flex-shrink: 0;
-            transition: transform 0.4s ease;
-        }
-
-        .exp-card:hover { transform: scale(1.05); z-index: 100; }
-
-        /* DATE BADGE ON THUMBNAIL */
-        .date-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(0,0,0,0.8);
-            color: white;
-            padding: 4px 8px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            border-radius: 3px;
-            border: 1px solid #444;
-            z-index: 5;
-        }
-
-        /* TITLE VISIBLE ON THUMBNAIL */
-        .thumb-title {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.95));
-            color: white;
-            font-weight: bold;
-            font-size: 1.1rem;
-            box-sizing: border-box;
-            z-index: 5;
-            transition: opacity 0.3s;
-        }
-
-        /* THE HOVER PREVIEW BOX */
-        .card-preview {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(20, 20, 20, 0.98);
-            border: 1px solid #444;
-            border-radius: 4px;
-            padding: 15px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 10;
-        }
-
-        .exp-card:hover .card-preview { opacity: 1; }
-        .exp-card:hover .thumb-title { opacity: 0; }
-
-        .preview-title { font-size: 1.1rem; font-weight: bold; color: white; margin: 0 0 5px 0; }
-        .preview-company { font-size: 0.85rem; color: #46d369; font-weight: bold; margin-bottom: 10px; }
-
-        .preview-bullets {
-            margin: 0;
-            padding-left: 15px;
-            font-size: 0.8rem;
-            color: #ccc;
-            line-height: 1.4;
-            flex-grow: 1;
-        }
-
-        .preview-bullets li { margin-bottom: 6px; }
-
-        .featuring-stack {
-            font-size: 0.8rem;
-            color: #888;
-            margin-top: 10px;
-            border-top: 1px solid #333;
-            padding-top: 8px;
-        }
-
-        .featuring-stack strong { color: #fff; }
-
-        /* --- MOBILE OPTIMIZATION --- */
-        @media (max-width: 900px) {
-            body { flex-direction: column; }
-            .nav-links { display: none; }
-            .sidebar { 
-                width: 100%; 
-                height: auto; 
-                position: relative; 
-                top: 75px; /* Adjusts for navbar */
-                border-right: none; 
-                border-bottom: 1px solid #333; 
-                padding: 20px 5%;
-            }
-            .main-content { margin-left: 0; width: 100%; padding: 110px 5% 30px; }
-            .exp-card { min-width: 280px; height: 220px; }
-            .preview-bullets { font-size: 0.75rem; }
-        }
-    </style>
-</head>
-<body>
-
-    <nav class="navbar">
-        <div class="nav-left">
-            <a href="index.html" class="logo">LAKSHITHA G</a>
-            <ul class="nav-links">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="aboutme.html">About</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="experience.html" style="font-weight:bold; color:white;">Experience</a></li>
-            </ul>
-        </div>
-        <a href="home.html" class="profile-btn"></a>
-    </nav>
-
-    <aside class="sidebar">
-        <div class="search-container">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" id="searchInput" class="search-input" placeholder="Search tech, tools, roles...">
-        </div>
-
-        <div class="trending-title">Trending Searches</div>
-        <div class="tags-container">
-            <span class="trend-tag" onclick="searchTag('Python')">#Python</span>
-            <span class="trend-tag" onclick="searchTag('SQL')">#SQL</span>
-            <span class="trend-tag" onclick="searchTag('LLM')">#LLM</span>
-        </div>
-    </aside>
-
-    <main class="main-content">
+<main class="main-content">
         
         <h1 class="page-title">Experience Library</h1>
         <p class="page-subtitle">Search by keyword or browse my professional timeline.</p>
@@ -326,7 +12,7 @@
             <div class="card-slider">
                 
                 <div class="exp-card" data-skills="research python sql spss llm healthcare" style="background-image: url('assests/rwj_bg.jpg');">
-                    <span class="date-badge">Current (5m)</span>
+                    <span class="date-badge">Oct 2025-Present</span>
                     <div class="thumb-title">Clinical Outcomes Research</div>
                     
                     <div class="card-preview">
@@ -342,7 +28,7 @@
                 </div>
 
                 <div class="exp-card" data-skills="tax financial excel business accuracy" style="background-image: url('assests/tax_bg.jpg');">
-                    <span class="date-badge">Current (3m)</span>
+                    <span class="date-badge">Jan 2025-Present</span>
                     <div class="thumb-title">Tax Preparer</div>
                     
                     <div class="card-preview">
@@ -364,8 +50,24 @@
             <h2 class="row-title">The Research Collection</h2>
             <div class="card-slider">
                 
+                <div class="exp-card" data-skills="research python sql spss llm healthcare" style="background-image: url('assests/rwj_bg.jpg');">
+                    <span class="date-badge">Oct 2025-Present</span>
+                    <div class="thumb-title">Clinical Outcomes Research</div>
+                    
+                    <div class="card-preview">
+                        <h3 class="preview-title">Clinical Outcomes Researcher</h3>
+                        <div class="preview-company">RWJ & Rider University</div>
+                        <ul class="preview-bullets">
+                            <li>Analyzing critical healthcare data to find narratives behind hospital efficiency.</li>
+                            <li>Evaluating patient recovery metrics through advanced statistical modeling.</li>
+                            <li>Collaborating with cross-functional teams to streamline clinical reporting.</li>
+                        </ul>
+                        <div class="featuring-stack"><strong>Featuring:</strong> Python, SQL, SPSS, LLM</div>
+                    </div>
+                </div>
+
                 <div class="exp-card" data-skills="research eye tracking r tobii biometric heatmaps" style="background-image: url('assests/eye_bg.jpg');">
-                    <span class="date-badge">Current (2y)</span>
+                    <span class="date-badge">Sep 2024-Present</span>
                     <div class="thumb-title">Eye-Motion Tracking Study</div>
                     
                     <div class="card-preview">
@@ -381,7 +83,7 @@
                 </div>
 
                 <div class="exp-card" data-skills="research longitudinal excel spss python llm" style="background-image: url('assests/meals_bg.jpg');">
-                    <span class="date-badge">Current (5m)</span>
+                    <span class="date-badge">Oct 2025-Present</span>
                     <div class="thumb-title">Share My Meals Study</div>
                     
                     <div class="card-preview">
@@ -404,7 +106,7 @@
             <div class="card-slider">
                 
                 <div class="exp-card" data-skills="business operations analyst etl crm sql python tableau startup" style="background-image: url('assests/santech_bg.jpg');">
-                    <span class="date-badge">Sept 2023 – May 2025</span>
+                    <span class="date-badge">Sep 2023-May 2025</span>
                     <div class="thumb-title">Santech Solutions Inc.</div>
                     
                     <div class="card-preview">
@@ -420,7 +122,7 @@
                 </div>
 
                 <div class="exp-card" data-skills="business e-commerce internship python seo database vs code" style="background-image: url('assests/event_bg.jpg');">
-                    <span class="date-badge">Jan 2024 - June 2024</span>
+                    <span class="date-badge">Jan 2024-June 2024</span>
                     <div class="thumb-title">Easy Event Planning</div>
                     
                     <div class="card-preview">
@@ -434,10 +136,9 @@
                         <div class="featuring-stack"><strong>Featuring:</strong> Python, VS Code, SEO, MySQL</div>
                     </div>
                 </div>
-                </div>
 
                 <div class="exp-card" data-skills="tax financial excel business accuracy" style="background-image: url('assests/tax_bg.jpg');">
-                    <span class="date-badge">Current (3m)</span>
+                    <span class="date-badge">Jan 2025-Present</span>
                     <div class="thumb-title">Tax Preparer</div>
                     
                     <div class="card-preview">
@@ -452,9 +153,8 @@
                     </div>
                 </div>
 
-            </div>
                 <div class="exp-card" data-skills="business education tutoring marketing html css python math" style="background-image: url('assests/tutor_bg.jpg');">
-                    <span class="date-badge">3 Years</span>
+                    <span class="date-badge">Oct 2021-Oct 2025</span>
                     <div class="thumb-title">Educational Tutor</div>
                     
                     <div class="card-preview">
@@ -477,7 +177,7 @@
             <div class="card-slider">
                 
                 <div class="exp-card" data-skills="service hospitality waitressing multitasking pos" style="background-image: url('assests/restaurant_bg.jpg');">
-                    <span class="date-badge">8 Weeks</span>
+                    <span class="date-badge">Dec 2025-Feb 2026</span>
                     <div class="thumb-title">NYT Top 50 Restaurant</div>
                     
                     <div class="card-preview">
@@ -493,7 +193,7 @@
                 </div>
 
                 <div class="exp-card" data-skills="service bakery marketing financial analytics sales" style="background-image: url('assests/bakery_bg.jpg');">
-                    <span class="date-badge">1 Year</span>
+                    <span class="date-badge">Dec 2024-Present</span>
                     <div class="thumb-title">Hot Breads Bakery</div>
                     
                     <div class="card-preview">
@@ -512,57 +212,3 @@
         </section>
 
     </main>
-
-    <script>
-        const searchInput = document.getElementById('searchInput');
-        const genreRows = document.querySelectorAll('.genre-row');
-        const allCards = document.querySelectorAll('.exp-card');
-        const noResultsMsg = document.getElementById('noResultsMsg');
-
-        function filterExperience(query) {
-            query = query.toLowerCase().trim();
-            let totalVisibleCards = 0;
-
-            allCards.forEach(card => {
-                const skills = card.getAttribute('data-skills').toLowerCase();
-                const title = card.querySelector('.thumb-title').innerText.toLowerCase();
-
-                if (skills.includes(query) || title.includes(query)) {
-                    card.style.display = 'block';
-                    totalVisibleCards++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            genreRows.forEach(row => {
-                const visibleCardsInRow = Array.from(row.querySelectorAll('.exp-card')).filter(card => card.style.display === 'block');
-                if (visibleCardsInRow.length === 0) {
-                    row.style.display = 'none';
-                } else {
-                    row.style.display = 'block';
-                }
-            });
-
-            if (totalVisibleCards === 0) {
-                noResultsMsg.style.display = 'block';
-            } else {
-                noResultsMsg.style.display = 'none';
-            }
-        }
-
-        searchInput.addEventListener('input', (e) => {
-            filterExperience(e.target.value);
-        });
-
-        function searchTag(tagText) {
-            searchInput.value = tagText;
-            filterExperience(tagText);
-            if(window.innerWidth <= 900) {
-                window.scrollTo({ top: 300, behavior: 'smooth' });
-            }
-        }
-    </script>
-
-</body>
-</html>
