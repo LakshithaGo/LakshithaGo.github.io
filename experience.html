@@ -16,16 +16,54 @@
             color: white;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             overflow-x: hidden;
-            display: flex; /* Sets up the Sidebar + Main Content layout */
+            display: flex; 
         }
 
-        /* --- LEFT SIDEBAR (TV INTERFACE STYLE) --- */
-        .sidebar {
-            width: 260px;
-            height: 100vh;
-            background-color: #0b0b0b;
+        /* --- TOP NAVBAR (From projects.html) --- */
+        .navbar {
             position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%; 
+            background-color: #141414; /* Solid background so scrolling text doesn't show through */
+            border-bottom: 1px solid #333;
+            z-index: 3000;
+            box-sizing: border-box;
+        }
+
+        .nav-left { display: flex; align-items: center; gap: 45px; }
+        
+        .logo { 
+            color: #B81D24; 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            text-decoration: none; 
+            letter-spacing: -1.5px; 
+        }
+
+        .nav-links { display: flex; gap: 25px; list-style: none; padding: 0; margin: 0; }
+        .nav-links a { color: #e5e5e5; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: #b3b3b3; }
+
+        .profile-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            cursor: pointer;
+            background: url('eye track.jpg') center/cover;
+        }
+
+        /* --- LEFT SIDEBAR (Search & Trending) --- */
+        .sidebar {
+            width: 260px;
+            height: calc(100vh - 75px); /* Full height minus the top navbar */
+            background-color: #0b0b0b;
+            position: fixed;
+            top: 75px; /* Sits right below the top navbar */
             left: 0;
             padding: 30px 20px;
             box-sizing: border-box;
@@ -33,16 +71,6 @@
             z-index: 2000;
             display: flex;
             flex-direction: column;
-        }
-
-        .sidebar-logo {
-            color: #B81D24; 
-            font-size: 1.8rem; 
-            font-weight: bold; 
-            text-decoration: none; 
-            letter-spacing: -1.5px; 
-            margin-bottom: 40px;
-            display: block;
         }
 
         /* SEARCH BAR */
@@ -109,41 +137,11 @@
             color: white;
         }
 
-        /* SIDEBAR NAVIGATION LINKS */
-        .side-nav {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .side-nav a {
-            color: #e5e5e5;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .side-nav a:hover, .side-nav a.active {
-            color: #fff;
-        }
-
-        .side-nav a.active {
-            border-left: 3px solid #E50914;
-            padding-left: 10px;
-        }
-
         /* --- MAIN CONTENT AREA --- */
         .main-content {
-            margin-left: 260px; /* Pushes content right of the sidebar */
+            margin-left: 260px; 
             width: calc(100% - 260px);
-            padding: 40px 5%;
+            padding: 110px 5% 40px; /* Top padding to ensure it clears the fixed Navbar */
             box-sizing: border-box;
         }
 
@@ -160,15 +158,8 @@
         }
 
         /* --- GENRE ROWS --- */
-        .genre-row {
-            margin-bottom: 50px;
-        }
-
-        .row-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
+        .genre-row { margin-bottom: 50px; }
+        .row-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 15px; }
 
         .card-slider {
             display: flex;
@@ -197,10 +188,7 @@
             transition: transform 0.4s ease;
         }
 
-        .exp-card:hover {
-            transform: scale(1.05);
-            z-index: 100;
-        }
+        .exp-card:hover { transform: scale(1.05); z-index: 100; }
 
         /* DATE BADGE ON THUMBNAIL */
         .date-badge {
@@ -248,27 +236,11 @@
             z-index: 10;
         }
 
-        .exp-card:hover .card-preview {
-            opacity: 1;
-        }
+        .exp-card:hover .card-preview { opacity: 1; }
+        .exp-card:hover .thumb-title { opacity: 0; }
 
-        .exp-card:hover .thumb-title {
-            opacity: 0; /* Hides the bottom title when preview opens */
-        }
-
-        .preview-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: white;
-            margin: 0 0 5px 0;
-        }
-
-        .preview-company {
-            font-size: 0.85rem;
-            color: #46d369; /* Netflix Green match color */
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+        .preview-title { font-size: 1.1rem; font-weight: bold; color: white; margin: 0 0 5px 0; }
+        .preview-company { font-size: 0.85rem; color: #46d369; font-weight: bold; margin-bottom: 10px; }
 
         .preview-bullets {
             margin: 0;
@@ -279,9 +251,7 @@
             flex-grow: 1;
         }
 
-        .preview-bullets li {
-            margin-bottom: 6px;
-        }
+        .preview-bullets li { margin-bottom: 6px; }
 
         .featuring-stack {
             font-size: 0.8rem;
@@ -291,34 +261,44 @@
             padding-top: 8px;
         }
 
-        .featuring-stack strong {
-            color: #fff;
-        }
+        .featuring-stack strong { color: #fff; }
 
         /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 900px) {
             body { flex-direction: column; }
+            .nav-links { display: none; }
             .sidebar { 
                 width: 100%; 
                 height: auto; 
                 position: relative; 
+                top: 75px; /* Adjusts for navbar */
                 border-right: none; 
                 border-bottom: 1px solid #333; 
                 padding: 20px 5%;
             }
-            .side-nav { flex-direction: row; gap: 15px; overflow-x: auto; padding-bottom: 10px; }
-            .main-content { margin-left: 0; width: 100%; padding: 30px 5%; }
+            .main-content { margin-left: 0; width: 100%; padding: 110px 5% 30px; }
             .exp-card { min-width: 280px; height: 220px; }
             .preview-bullets { font-size: 0.75rem; }
         }
-
     </style>
 </head>
 <body>
 
-    <aside class="sidebar">
-        <a href="index.html" class="sidebar-logo">LAKSHITHA G</a>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="logo">LAKSHITHA G</a>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="aboutme.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="experience.html" style="font-weight:bold; color:white;">Experience</a></li>
+            </ul>
+        </div>
+        <a href="home.html" class="profile-btn"></a>
+    </nav>
 
+    <aside class="sidebar">
         <div class="search-container">
             <i class="fas fa-search search-icon"></i>
             <input type="text" id="searchInput" class="search-input" placeholder="Search tech, tools, roles...">
@@ -330,14 +310,6 @@
             <span class="trend-tag" onclick="searchTag('SQL')">#SQL</span>
             <span class="trend-tag" onclick="searchTag('LLM')">#LLM</span>
         </div>
-
-        <ul class="side-nav">
-            <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="aboutme.html"><i class="fas fa-user"></i> About</a></li>
-            <li><a href="projects.html"><i class="fas fa-folder-open"></i> Projects</a></li>
-            <li><a href="skills.html"><i class="fas fa-wrench"></i> Skills</a></li>
-            <li><a href="experience.html" class="active"><i class="fas fa-briefcase"></i> Experience</a></li>
-        </ul>
     </aside>
 
     <main class="main-content">
@@ -529,17 +501,14 @@
         const allCards = document.querySelectorAll('.exp-card');
         const noResultsMsg = document.getElementById('noResultsMsg');
 
-        // Function that hides/shows cards based on the search query
         function filterExperience(query) {
             query = query.toLowerCase().trim();
             let totalVisibleCards = 0;
 
             allCards.forEach(card => {
-                // Gets the keywords hidden in the 'data-skills' attribute of each card
                 const skills = card.getAttribute('data-skills').toLowerCase();
                 const title = card.querySelector('.thumb-title').innerText.toLowerCase();
 
-                // If the query matches the skills OR the title, show the card
                 if (skills.includes(query) || title.includes(query)) {
                     card.style.display = 'block';
                     totalVisibleCards++;
@@ -548,7 +517,6 @@
                 }
             });
 
-            // Hide entire rows (genres) if all cards inside them are hidden
             genreRows.forEach(row => {
                 const visibleCardsInRow = Array.from(row.querySelectorAll('.exp-card')).filter(card => card.style.display === 'block');
                 if (visibleCardsInRow.length === 0) {
@@ -558,7 +526,6 @@
                 }
             });
 
-            // Show "No Results" message if nothing matches
             if (totalVisibleCards === 0) {
                 noResultsMsg.style.display = 'block';
             } else {
@@ -566,18 +533,15 @@
             }
         }
 
-        // Trigger search as the user types
         searchInput.addEventListener('input', (e) => {
             filterExperience(e.target.value);
         });
 
-        // Trigger search when a user clicks a "Trending Tag"
         function searchTag(tagText) {
             searchInput.value = tagText;
             filterExperience(tagText);
-            // On mobile, scroll down slightly so they can see the results
             if(window.innerWidth <= 900) {
-                window.scrollTo({ top: 400, behavior: 'smooth' });
+                window.scrollTo({ top: 300, behavior: 'smooth' });
             }
         }
     </script>
