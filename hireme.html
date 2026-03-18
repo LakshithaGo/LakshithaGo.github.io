@@ -184,18 +184,21 @@
     <main class="contact-container">
         <div class="contact-card">
             <h1>Start Your Subscription</h1>
-            <form id="contactForm">
+            <form action="https://formsubmit.co/lakshithagovinda@email.com" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://yourportfolio.com/thanks.html">
+                
                 <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Full Name" required>
+                    <input type="text" name="name" class="form-input" placeholder="Full Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-input" placeholder="Email Address" required>
+                    <input type="email" name="email" class="form-input" placeholder="Email Address" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Subject" required>
+                    <input type="text" name="subject" class="form-input" placeholder="Subject" required>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-input" placeholder="How can we collaborate?"></textarea>
+                    <textarea name="message" class="form-input" placeholder="How can we collaborate?"></textarea>
                 </div>
                 <button type="submit" class="btn-submit">Subscribe to Me</button>
             </form>
@@ -222,8 +225,6 @@
     </footer>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
             // Using the specific success message you requested
             alert("Your request will be processed. Lakshitha will be in touch soon!");
             this.reset();
