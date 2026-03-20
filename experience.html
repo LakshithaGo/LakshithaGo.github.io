@@ -1,15 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Experience | Portfolio-Flix</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
+
         /* --- GLOBAL STYLES --- */
+
         body {
+
             margin: 0;
             padding: 0;
             background-color: #141414;
@@ -19,8 +23,12 @@
             display: flex; 
         }
 
+
+
         /* --- TOP NAVBAR (From projects.html) --- */
+
         .navbar {
+
             position: fixed;
             top: 0;
             left: 0;
@@ -29,15 +37,17 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 5%; 
-            background-color: #141414; 
+            background-color: #141414; /* Solid background so scrolling text doesn't show through */
             border-bottom: 1px solid #333;
             z-index: 3000;
             box-sizing: border-box;
+
         }
 
         .nav-left { display: flex; align-items: center; gap: 45px; }
-        
+
         .logo { 
+
             color: #B81D24; 
             font-size: 1.8rem; 
             font-weight: bold; 
@@ -48,8 +58,8 @@
         .nav-links { display: flex; gap: 25px; list-style: none; padding: 0; margin: 0; }
         .nav-links a { color: #e5e5e5; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: #b3b3b3; }
-
         .profile-btn {
+
             width: 32px;
             height: 32px;
             border-radius: 4px;
@@ -57,13 +67,17 @@
             background: url('Profile_Pic.jpg') center/cover;
         }
 
+
+
         /* --- LEFT SIDEBAR (Search & Trending) --- */
+
         .sidebar {
+
             width: 260px;
-            height: calc(100vh - 75px); 
+            height: calc(100vh - 75px); /* Full height minus the top navbar */
             background-color: #0b0b0b;
             position: fixed;
-            top: 75px; 
+            top: 75px; /* Sits right below the top navbar */
             left: 0;
             padding: 30px 20px;
             box-sizing: border-box;
@@ -71,13 +85,17 @@
             z-index: 2000;
             display: flex;
             flex-direction: column;
+
         }
 
         /* SEARCH BAR */
+
         .search-container {
             position: relative;
             margin-bottom: 20px;
         }
+
+
 
         .search-icon {
             position: absolute;
@@ -85,6 +103,7 @@
             left: 12px;
             transform: translateY(-50%);
             color: #888;
+
         }
 
         .search-input {
@@ -98,14 +117,17 @@
             box-sizing: border-box;
             outline: none;
             transition: 0.3s;
+
         }
 
         .search-input:focus {
             border-color: white;
             background-color: #333;
+
         }
 
         /* TRENDING TAGS */
+
         .trending-title {
             font-size: 0.85rem;
             color: #808080;
@@ -113,14 +135,16 @@
             font-weight: bold;
             margin-bottom: 10px;
             letter-spacing: 1px;
-        }
 
+        }
         .tags-container {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 40px;
+
         }
+
 
         .trend-tag {
             background-color: #333;
@@ -130,20 +154,29 @@
             font-size: 0.8rem;
             cursor: pointer;
             transition: 0.2s;
+
         }
+
+
 
         .trend-tag:hover {
             background-color: #E50914;
             color: white;
+
         }
 
+
+
         /* --- MAIN CONTENT AREA --- */
+
         .main-content {
             margin-left: 260px; 
             width: calc(100% - 260px);
-            padding: 110px 5% 40px; 
+            padding: 110px 5% 40px; /* Top padding to ensure it clears the fixed Navbar */
             box-sizing: border-box;
         }
+
+
 
         .page-title {
             font-size: 3rem;
@@ -151,13 +184,18 @@
             margin-bottom: 5px;
         }
 
+
+
         .page-subtitle {
             font-size: 1.1rem;
             color: #808080;
             margin-bottom: 40px;
         }
 
+
+
         /* --- GENRE ROWS --- */
+
         .genre-row { margin-bottom: 50px; }
         .row-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 15px; }
 
@@ -169,11 +207,13 @@
             scroll-behavior: smooth;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
+
         }
 
         .card-slider::-webkit-scrollbar { display: none; }
 
         /* --- THE EXPERIENCE CARDS --- */
+
         .exp-card {
             min-width: 340px;
             height: 200px;
@@ -186,12 +226,17 @@
             scroll-snap-align: start;
             flex-shrink: 0;
             transition: transform 0.4s ease;
+
         }
+
+
 
         .exp-card:hover { transform: scale(1.05); z-index: 100; }
 
         /* DATE BADGE ON THUMBNAIL */
+
         .date-badge {
+
             position: absolute;
             top: 10px;
             right: 10px;
@@ -202,10 +247,15 @@
             font-weight: bold;
             border-radius: 3px;
             border: 1px solid #444;
+
             z-index: 5;
+
         }
 
+
+
         /* TITLE VISIBLE ON THUMBNAIL */
+
         .thumb-title {
             position: absolute;
             bottom: 0;
@@ -218,10 +268,15 @@
             box-sizing: border-box;
             z-index: 5;
             transition: opacity 0.3s;
+
         }
 
+
+
         /* THE HOVER PREVIEW BOX */
+
         .card-preview {
+
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(20, 20, 20, 0.98);
@@ -234,14 +289,18 @@
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: 10;
-            pointer-events: none; /* Allows the click to pass through to the main card */
+
         }
+
+
 
         .exp-card:hover .card-preview { opacity: 1; }
         .exp-card:hover .thumb-title { opacity: 0; }
 
+
         .preview-title { font-size: 1.1rem; font-weight: bold; color: white; margin: 0 0 5px 0; }
         .preview-company { font-size: 0.85rem; color: #46d369; font-weight: bold; margin-bottom: 10px; }
+
 
         .preview-bullets {
             margin: 0;
@@ -250,179 +309,80 @@
             color: #ccc;
             line-height: 1.4;
             flex-grow: 1;
+
         }
+
+
 
         .preview-bullets li { margin-bottom: 6px; }
 
+
+
         .featuring-stack {
+
             font-size: 0.8rem;
             color: #888;
             margin-top: 10px;
             border-top: 1px solid #333;
             padding-top: 8px;
+
         }
 
+
+
         .featuring-stack strong { color: #fff; }
-        
+
         /* BACK BUTTON CSS */
+
         .back-btn {
             color: white;
             font-size: 1.5rem;
             text-decoration: none;
             transition: transform 0.2s;
+
         }
+
         .back-btn:hover {
             transform: scale(1.1);
 
+
         }
-
-        /* ========================================= */
-        /* --- NETFLIX-STYLE MODAL POPUP CSS --- */
-        /* ========================================= */
-        
-        /* The dark blurred background */
-        .modal-overlay {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(4px);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        /* Added via JS to make it visible */
-        .modal-overlay.show {
-            display: flex;
-            opacity: 1;
-        }
-
-        /* The actual popup box */
-        .modal-content {
-            background-color: #181818;
-            width: 90%;
-            max-width: 650px;
-            max-height: 85vh;
-            overflow-y: auto; /* Allows scrolling if content is long */
-            border-radius: 8px;
-            position: relative;
-            box-shadow: 0 0 30px rgba(0,0,0,0.9);
-            border: 1px solid #333;
-            padding: 0; /* Padding managed inside */
-        }
-
-        /* Big 'X' Close Button */
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            color: white;
-            font-size: 2rem;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 100;
-            background-color: rgba(0,0,0,0.5);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background-color 0.2s;
-        }
-
-        .close-btn:hover { background-color: white; color: black; }
-
-        .modal-header {
-            padding: 40px 40px 20px 40px;
-            border-bottom: 1px solid #333;
-        }
-
-        .modal-title { font-size: 2rem; margin: 0 0 10px 0; }
-        .modal-desc { font-size: 1.05rem; color: #ccc; line-height: 1.5; margin: 0; }
-
-        .modal-body { padding: 30px 40px; }
-
-        /* The Math Section */
-        .modal-math {
-            background-color: #222;
-            padding: 20px;
-            border-left: 4px solid #E50914;
-            border-radius: 4px;
-            margin-bottom: 30px;
-        }
-
-        .modal-math h4 { margin: 0 0 10px 0; font-size: 1.1rem; color: white; }
-        .modal-math .formula { font-family: 'Courier New', Courier, monospace; font-size: 1.2rem; color: #46d369; margin: 0 0 10px 0; }
-
-        /* Vertical Image Stack */
-        .modal-images {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .img-placeholder {
-            width: 100%;
-            height: 250px;
-            background-color: #2a2a2a;
-            border: 2px dashed #555;
-            border-radius: 4px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #888;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        /* Technical Credits */
-        .modal-credits {
-            border-top: 1px solid #333;
-            padding-top: 20px;
-            font-size: 0.95rem;
-            color: #ccc;
-        }
-
-        .modal-credits p { margin: 5px 0; }
-        .modal-credits strong { color: #fff; }
-
 
         /* --- MOBILE OPTIMIZATION --- */
+
         @media (max-width: 900px) {
+
             body { flex-direction: column; }
             .nav-links { display: none; }
             .sidebar { 
                 width: 100%; 
                 height: auto; 
                 position: relative; 
-                top: 75px; 
+                top: 75px; /* Adjusts for navbar */
                 border-right: none; 
                 border-bottom: 1px solid #333; 
                 padding: 20px 5%;
+
             }
+
             .main-content { margin-left: 0; width: 100%; padding: 110px 5% 30px; }
             .exp-card { min-width: 280px; height: 220px; }
             .preview-bullets { font-size: 0.75rem; }
-            
-            /* Modal Mobile Tweaks */
-            .modal-content { width: 100%; height: 100vh; max-height: 100vh; border-radius: 0; }
-            .modal-header { padding: 30px 20px 20px; }
-            .modal-body { padding: 20px; }
+
         }
+
     </style>
+
 </head>
+
 <body>
+
     <nav class="navbar">
         <div class="nav-left">
             <a href="home.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
             <a href="index.html" class="logo">LAKSHITHA G</a>
             <ul class="nav-links">
+
                 <li><a href="home.html">Home</a></li>
                 <li><a href="aboutme.html">About Me</a></li>
                 <li><a href="experience.html"style="font-weight:bold; color:white;">Experience</a></li>
@@ -431,14 +391,21 @@
                 <li><a href="3-20-2026-Lakshitha Govinda-Resume.pdf" target="_blank">Resume</a></li>
                 <li><a href="hireme.html">Hire Me</a></li>
             </ul>
+
         </div>
+
         <a href="home.html" class="profile-btn"></a>
+
     </nav>
 
+
+
     <aside class="sidebar">
+
         <div class="search-container">
             <i class="fas fa-search search-icon"></i>
             <input type="text" id="searchInput" class="search-input" placeholder="Search tech, tools, roles...">
+
         </div>
 
         <div class="trending-title">Trending Searches</div>
@@ -447,330 +414,542 @@
             <span class="trend-tag" onclick="searchTag('SQL')">#SQL</span>
             <span class="trend-tag" onclick="searchTag('LLM')">#LLM</span>
         </div>
+
     </aside>
 
+
+
 <main class="main-content">
+
         
         <h1 class="page-title">Experience Library</h1>
+
         <p class="page-subtitle">Search by keyword or browse my professional timeline.</p>
 
+
+
         <div id="noResultsMsg" style="display: none; color: #888; font-size: 1.2rem; margin-top: 20px;">
+
             No roles match that search. Try another keyword like "Excel" or "Python".
+
         </div>
 
+
+
         <section class="genre-row">
+
             <h2 class="row-title">Trending Now</h2>
+
             <div class="card-slider">
+
                 
+
                 <div class="exp-card" data-skills="research python sql spss llm healthcare" style="background-image: url('Impact of Consistent Interpreter.jpg');">
+
                     <span class="date-badge">Oct 2025 - Present</span>
+
                     <div class="thumb-title">Stastical Researcher & Analyst</div>
+
                     
+
                     <div class="card-preview">
+
                         <h3 class="preview-title">Stastical Researcher & Analyst</h3>
+
                         <div class="preview-company">Interpreter Use Impact on Patient Outcomes</div>
+
                         <ul class="preview-bullets">
+
                             <li>Analyzing critical healthcare data to find narratives behind hospital efficiency.</li>
+
                             <li>Evaluating patient recovery metrics through advanced statistical modeling.</li>
+
                             <li>Collaborating with cross-functional teams to streamline clinical reporting.</li>
+
                         </ul>
+
                         <div class="featuring-stack"><strong>Featuring:</strong> Python, SQL, SPSS, LLM</div>
+
                     </div>
+
                 </div>
+
+
 
                 <div class="exp-card" data-skills="tax financial excel business accuracy" style="background-image: url('https://www.fairfaxcounty.gov/news/sites/news/files/Assets/images/newscenter-logos/taxdocuments_600x900.png');">
+
                     <span class="date-badge">Jan 2025 - Present</span>
+
                     <div class="thumb-title">Tax Preparer</div>
+
                     
+
                     <div class="card-preview">
+
                         <h3 class="preview-title">Tax Preparer</h3>
+
                         <div class="preview-company">Tax Firm</div>
+
                         <ul class="preview-bullets">
+
                             <li>Managing financial data and client relations with extreme attention to numerical detail.</li>
+
                             <li> Reconciling sensitive tax documents ensuring 100% compliance and confidentiality.</li>
+
                             <li>Using advanced software to process high volumes of filings ahead of strict deadlines.</li>
+
                         </ul>
+
                         <div class="featuring-stack"><strong>Featuring:</strong> Excel, Financial Analytics, Tax Software</div>
+
                     </div>
+
                 </div>
+
+
 
             </div>
+
         </section>
 
+
+
         <section class="genre-row">
+
             <h2 class="row-title">The Research Collection</h2>
+
             <div class="card-slider">
+
                 
+
                 <div class="exp-card" data-skills="research python sql spss llm healthcare" style="background-image: url('Impact of Consistent Interpreter.jpg');">
+
                     <span class="date-badge">Oct 2025 - Present</span>
+
                     <div class="thumb-title">Stastical Researcher & Analyst</div>
+
                     
+
                     <div class="card-preview">
+
                         <h3 class="preview-title">Stastical Researcher & Analyst</h3>
+
                         <div class="preview-company">Interpreter Use Impact on Patient Outcomes</div>
+
                         <ul class="preview-bullets">
+
                             <li>Analyzing critical healthcare data to find narratives behind hospital efficiency.</li>
+
                             <li>Evaluating patient recovery metrics through advanced statistical modeling.</li>
+
                             <li>Collaborating with cross-functional teams to streamline clinical reporting.</li>
+
                         </ul>
+
                         <div class="featuring-stack"><strong>Featuring:</strong> Python, Statistics, Regression, Analytics, Linear, SQL, SPSS, LLM</div>
+
                     </div>
+
                 </div>
+
+
 
                 <div class="exp-card" data-skills="research eye tracking r tobii biometric heatmaps" style="background-image: url('https://www.sr-research.com/wp-content/uploads/2022/05/eye-tracker-eyelink-duo.jpg');">
+
                     <span class="date-badge">Sep 2024 - Present</span>
+
                     <div class="thumb-title">Eye-Motion Tracking Study</div>
+
                     
+
                     <div class="card-preview">
+
                         <h3 class="preview-title">Data Anlayst & Researcher</h3>
+
                         <div class="preview-company">University Study</div>
+
                         <ul class="preview-bullets">
+
                             <li>Conducting longitudinal analysis on visual behavioral patterns.</li>
+
                             <li>Generating precise heatmaps utilizing biometric tracking software.</li>
+
                             <li>Applying predictive modeling to human-computer interaction datasets.</li>
+
                         </ul>
+
                         <div class="featuring-stack"><strong>Featuring:</strong> R, Biometric Software, Charts, Excel, Predictive Modeling</div>
+
                     </div>
+
                 </div>
 
-                <div class="exp-card" onclick="openModal('mealsModal')" data-skills="research longitudinal excel spss python llm" style="background-image: url('Share my Meals- A longitudinal Analysis .jpg');">
+
+
+                <div class="exp-card" data-skills="research longitudinal excel spss python llm" style="background-image: url('Share my Meals- A longitudinal Analysis .jpg');">
+
                     <span class="date-badge">Oct 2025 - Present</span>
-                    <div class="thumb-title">Share My Meals Study</div>
+
+                    <div class="thumb-title">Share My Meals Study- Impact on Communities</div>
+
                     
+
                     <div class="card-preview">
+
                         <h3 class="preview-title">Data Analyst</h3>
+
                         <div class="preview-company">Share My Meals</div>
+
                         <ul class="preview-bullets">
+
                             <li>Leading a longitudinal study focusing on the impact of community meal-sharing.</li>
+
                             <li>Processing large datasets tracking food distribution and demographic reach.</li>
+
                             <li>Utilizing LLMs and statistical software to generate automated weekly insights.</li>
+
                         </ul>
+
                         <div class="featuring-stack"><strong>Featuring:</strong> Python, Excel, Statistics, Regression, SPSS, LLM</div>
+
                     </div>
+
                 </div>
+
+
 
             </div>
+
         </section>
 
+
+
         <section class="genre-row">
+
             <h2 class="row-title">The Business Suite</h2>
+
             <div class="card-slider">
+
                 
+
                 <div class="exp-card" data-skills="business operations analyst etl crm sql python tableau startup" style="background-image: url('https://mysantech.com/BlogLargeImage/406386.jpg');">
+
                     <span class="date-badge">Sep 2022 - May 2025</span>
+
                     <div class="thumb-title">Santech Solutions Inc.</div>
+
                     
+
                     <div class="card-preview">
+
                         <h3 class="preview-title">Operations & Business Analyst</h3>
+
                         <div class="preview-company">Santech Solutions Inc.</div>
+
                         <ul class="preview-bullets">
+
                             <li>Developed ETL and data cleansing processes, improving dataset accuracy by 40%.</li>
+
                             <li>Managed CRM workflows and KPI dashboards, increasing outreach efficiency by 30%.</li>
+
                             <li>Designed data structures that improved data reliability & conducted market analysis on 500+ orgs.</li>
+
                         </ul>
+
                         <div class="featuring-stack"><strong>Featuring:</strong> SQL, Python, Sales, Apollo, Salesforce, Healthcare, Provider, Data Cleaning, ETL, CRM, Tableau</div>
+
                     </div>
+
                 </div>
+
+
 
                 <div class="exp-card" data-skills="business e-commerce internship python seo database vs code" style="background-image: url('https://easyeventplanning.com/files/images/4th-of-july-party-checklist.jpg');">
+
                     <span class="date-badge">Jan 2024 - June 2024</span>
+
                     <div class="thumb-title">Easy Event Planning</div>
+
                     
+
                     <div class="card-preview">
+
                         <h3 class="preview-title">Database Analyst & PM Intern</h3>
+
                         <div class="preview-company">Remote E-commerce</div>
+
                         <ul class="preview-bullets">
+
                             <li>Led team of 12 to deploy database scripts for high-volume Etsy/Amazon data integrations.</li>
+
                             <li>Doubled daily web traffic (10k-20k) within 4 months via keyword research & SEO modeling.</li>
+
                             <li>Conducted bi-weekly risk assessments & automated backup protocols.</li>
+
                         </ul>
+
                         <div class="featuring-stack"><strong>Featuring:</strong> Python, Amazon, Online, Zoom, Keywords, VS Code, SEO, MySQL</div>
+
                     </div>
+
                 </div>
+
+
 
                 <div class="exp-card" data-skills="tax financial excel business accuracy" style="background-image: url('https://www.fairfaxcounty.gov/news/sites/news/files/Assets/images/newscenter-logos/taxdocuments_600x900.png');">
+
                     <span class="date-badge">Jan 2025 - Present</span>
+
                     <div class="thumb-title">Tax Preparer</div>
+
                     
+
                     <div class="card-preview">
+
                         <h3 class="preview-title">Tax Preparer</h3>
+
                         <div class="preview-company">Tax Firm</div>
+
                         <ul class="preview-bullets">
+
                             <li>Managing financial data and client relations with extreme attention to numerical detail.</li>
+
                             <li> Reconciling sensitive tax documents ensuring 100% compliance and confidentiality.</li>
+
                             <li>Using advanced software to process high volumes of filings ahead of strict deadlines.</li>
+
                         </ul>
+
                         <div class="featuring-stack"><strong>Featuring:</strong> Excel, Audit, Accounting, Financial Analytics, Tax Software</div>
+
                     </div>
+
                 </div>
+
+
 
                 <div class="exp-card" data-skills="business education tutoring marketing html css python math" style="background-image: url('https://cdn.prod.website-files.com/6659b4e0fdfc816751dfb306/66c3e8113d877f83dd51dd08_66bf61f22a9bc0f0b5b2c82d_Eye%2520Level%2520Learning.jpeg');">
+
                     <span class="date-badge">Oct 2021 - Oct 2025</span>
+
                     <div class="thumb-title">Educational Tutor</div>
+
                     
+
                     <div class="card-preview">
+
                         <h3 class="preview-title">Subject Expert & Marketer</h3>
+
                         <div class="preview-company">Independent Contracting</div>
+
                         <ul class="preview-bullets">
+
                             <li>Instructed students across SAT prep, coding fundamentals, and K-12 subjects over a 3-year span.</li>
+
                             <li>Designed marketing materials and outreach campaigns to build a consistent client base.</li>
+
                             <li>Adapted complex logical concepts (like syntax and algebra) into accessible, engaging lesson plans.</li>
+
                         </ul>
+
                         <div class="featuring-stack"><strong>Featuring:</strong> Communication, Marketing, Python, HTML/CSS</div>
+
                     </div>
+
                 </div>
 
+
+
             </div>
+
         </section>
+
+
 
         <section class="genre-row">
+
             <h2 class="row-title">The Service Industry</h2>
+
             <div class="card-slider">
+
                 
+
                 <div class="exp-card" data-skills="service hospitality waitressing multitasking pos" style="background-image: url('https://tb-static.uber.com/prod/image-proc/processed_images/342ec1d3394b93254c4c37298025cc11/c9252e6c6cd289c588c3381bc77b1dfc.jpeg');">
+
                     <span class="date-badge">Dec 2025 - Feb 2026</span>
+
                     <div class="thumb-title">NYT Top 50 Restaurant</div>
+
                     
+
                     <div class="card-preview">
+
                         <h3 class="preview-title">Waitress</h3>
+
                         <div class="preview-company">Fine Dining</div>
+
                         <ul class="preview-bullets">
+
                             <li>Managed hectic multitasking in a high-pressure, elite fine-dining environment.</li>
+
                             <li>Maintained flawless communication with kitchen and front-of-house staff during peak volume hours.</li>
+
                             <li>Memorized complex menus and operated POS systems to deliver premium customer experiences.</li>
+
                         </ul>
+
                         <div class="featuring-stack"><strong>Featuring:</strong> Multitasking, POS Systems, High-Pressure Comms</div>
+
                     </div>
+
                 </div>
+
+
 
                 <div class="exp-card" data-skills="service bakery marketing financial analytics sales" style="background-image: url('https://www.waywardblog.com/wp-content/uploads/2025/07/ZUbakery-Portland.jpg');">
+
                     <span class="date-badge">Dec 2024 - Present</span>
+
                     <div class="thumb-title">Hot Breads Bakery</div>
+
                     
+
                     <div class="card-preview">
+
                         <h3 class="preview-title">Operations & Strategy Analyst</h3>
+
                         <div class="preview-company">Local Business</div>
+
                         <ul class="preview-bullets">
+
                             <li>Assisting with business plan, marketing, and advertising, increasing monthly sales by $5k/month.</li>
+
                             <li>Initiating email marketing campaigns and secured new relationships, increasing profitability by 15%.</li>
+
                             <li>Conducting financial analysis to reduce overhead and incorporate better customer analytics.</li>
+
                         </ul>
+
                         <div class="featuring-stack"><strong>Featuring:</strong> Financial Analysis, Email Marketing, Sales Tracking</div>
+
                     </div>
+
                 </div>
 
+
+
             </div>
+
         </section>
+
+
 
     </main>
 
-    <div id="mealsModal" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            
-            <span class="close-btn" onclick="closeModal(event)">&times;</span>
-            
-            <div class="modal-header">
-                <h2 class="modal-title">Share My Meals: Longitudinal Analysis</h2>
-                <p class="modal-desc">Executing longitudinal analysis of community nutrition interventions to model the trajectory of food security and stress levels in vulnerable populations over six distinct time intervals.</p>
-            </div>
 
-            <div class="modal-body">
-                <div class="modal-math">
-                    <h4>Mathematical Modeling Used</h4>
-                    <p class="formula"><i>Y<sub>ij</sub></i> = &beta;<sub>0</sub> + &beta;<sub>1</sub><i>X<sub>ij</sub></i> + <i>b<sub>i</sub></i> + &epsilon;<sub>ij</sub></p>
-                    <p style="font-size: 0.85rem; color: #aaa; margin:0;">Utilized a Linear Mixed-Effects Model (LMM) to control for autocorrelation and random intercepts across varying time intervals.</p>
-                </div>
 
-                <div class="modal-images">
-                    <div class="img-placeholder">
-                        <span>Confidential Trend Analysis (Normalized)<br>[Drop Chart 1 Image Here]</span>
-                    </div>
-                    <div class="img-placeholder">
-                        <span>Estimated Marginal Means (EMMs) Trajectory<br>[Drop Chart 2 Image Here]</span>
-                    </div>
-                </div>
-
-                <div class="modal-credits">
-                    <p><strong>Starring:</strong> Python, Pandas, NumPy, SQL</p>
-                    <p><strong>Supporting:</strong> Statsmodels, Matplotlib, Seaborn, LLMs (Data Automation)</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
     <script>
+
         const searchInput = document.getElementById('searchInput');
+
         const genreRows = document.querySelectorAll('.genre-row');
+
         const allCards = document.querySelectorAll('.exp-card');
+
         const noResultsMsg = document.getElementById('noResultsMsg');
 
+
+
         function filterExperience(query) {
+
             query = query.toLowerCase().trim();
+
             let totalVisibleCards = 0;
 
+
+
             allCards.forEach(card => {
+
                 const skills = card.getAttribute('data-skills').toLowerCase();
+
                 const title = card.querySelector('.thumb-title').innerText.toLowerCase();
 
+
+
                 if (skills.includes(query) || title.includes(query)) {
+
                     card.style.display = 'block';
+
                     totalVisibleCards++;
+
                 } else {
+
                     card.style.display = 'none';
+
                 }
+
             });
+
+
 
             genreRows.forEach(row => {
+
                 const visibleCardsInRow = Array.from(row.querySelectorAll('.exp-card')).filter(card => card.style.display === 'block');
+
                 if (visibleCardsInRow.length === 0) {
+
                     row.style.display = 'none';
+
                 } else {
+
                     row.style.display = 'block';
+
                 }
+
             });
+
+
 
             if (totalVisibleCards === 0) {
+
                 noResultsMsg.style.display = 'block';
+
             } else {
+
                 noResultsMsg.style.display = 'none';
+
             }
+
         }
+
+
 
         searchInput.addEventListener('input', (e) => {
+
             filterExperience(e.target.value);
+
         });
 
+
+
         function searchTag(tagText) {
+
             searchInput.value = tagText;
+
             filterExperience(tagText);
+
             if(window.innerWidth <= 900) {
+
                 window.scrollTo({ top: 300, behavior: 'smooth' });
+
             }
+
         }
 
-        // ==========================================
-        // MODAL JAVASCRIPT LOGIC
-        // ==========================================
-        
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if(modal) {
-                modal.classList.add('show');
-                // Lock the background so the user can't scroll the main page while modal is open
-                document.body.style.overflow = 'hidden'; 
-            }
-        }
-
-        function closeModal(event) {
-            // Find any open modal and remove the show class
-            const openModals = document.querySelectorAll('.modal-overlay.show');
-            openModals.forEach(modal => {
-                modal.classList.remove('show');
-            });
-            // Re-enable background scrolling
-            document.body.style.overflow = 'auto';
-        }
     </script>
 
+
+
 </body>
+
 </html>
