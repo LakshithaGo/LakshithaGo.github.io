@@ -43,7 +43,7 @@
         .nav-links { display: flex; gap: 25px; list-style: none; padding: 0; margin: 0; }
         .nav-links a { color: #e5e5e5; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: #b3b3b3; }
-       
+        
         /* BACK BUTTON CSS */
         .back-btn {
             color: white;
@@ -209,6 +209,11 @@
             .banner-title { font-size: 2.5rem; }
             .project-card { min-width: 240px; height: 140px; }
             .footer-links { grid-template-columns: repeat(2, 1fr); }
+            
+            /* Mobile Modal Adjustments */
+            .modal-content { width: 100%; height: 100vh; max-height: 100vh; border-radius: 0; }
+            .modal-header { padding: 30px 20px 20px; }
+            .modal-body { padding: 20px; }
         }
 
         /* --- FOOTER --- */
@@ -235,6 +240,121 @@
         .box-eye { background-image: url('https://www.sr-research.com/wp-content/uploads/2022/05/eye-tracker-eyelink-duo.jpg'); }
         .box-meals { background-image: url('Share my Meals- A longitudinal Analysis .jpg'); }
         .box-other { background-image: url('Netflix_LoadTime.gif'); }
+
+        /* ========================================= */
+        /* --- NETFLIX-STYLE MODAL POPUP CSS --- */
+        /* ========================================= */
+        
+        .modal-overlay {
+            display: none; 
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.show { display: flex; opacity: 1; }
+
+        .modal-content {
+            background-color: #181818;
+            width: 90%;
+            max-width: 700px;
+            max-height: 85vh;
+            overflow-y: auto; 
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0,0,0,0.9);
+            border: 1px solid #333;
+            padding: 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 100;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .close-btn:hover { background-color: white; color: black; }
+
+        .modal-header {
+            padding: 40px 40px 20px 40px;
+            border-bottom: 1px solid #333;
+        }
+
+        .modal-title { font-size: 1.8rem; margin: 0 0 10px 0; }
+        
+        .modal-bullets {
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.5;
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .modal-bullets li { margin-bottom: 8px; }
+
+        .modal-body { padding: 30px 40px; }
+
+        .modal-math {
+            background-color: #222;
+            padding: 20px;
+            border-left: 4px solid #E50914;
+            border-radius: 4px;
+            margin-bottom: 30px;
+        }
+
+        .modal-math h4 { margin: 0 0 10px 0; font-size: 1.1rem; color: white; }
+        .modal-math .formula { font-family: 'Courier New', Courier, monospace; font-size: 1.1rem; color: #46d369; margin: 0 0 10px 0; }
+
+        .modal-images {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .img-placeholder {
+            width: 100%;
+            height: 250px;
+            background-color: #2a2a2a;
+            border: 2px dashed #555;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .modal-credits {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+
+        .modal-credits p { margin: 5px 0; }
+        .modal-credits strong { color: #fff; }
 
     </style>
 </head>
@@ -278,7 +398,7 @@
             </p>
 
             <div class="btn-container">
-                <a href="3-1-2026-Lakshitha Govinda-Resume.pdf" class="btn btn-resume"><i class="fas fa-play"></i> Resume</a>
+                <a href="3-20-2026-Lakshitha Govinda-Resume.pdf" class="btn btn-resume"><i class="fas fa-play"></i> Resume</a>
                 <a href="https://linkedin.com/in/lakshitha-g-747b64224" class="btn btn-linkedin"><i class="fas fa-info-circle"></i> LinkedIn</a>
             </div>
         </div>
@@ -288,7 +408,7 @@
         <h2 class="row-title">Today's Top Picks</h2>
         <div class="project-list">
             
-            <div class="project-card box-interpreter">
+            <div class="project-card box-interpreter" onclick="openModal('interpreterModal')">
                 <div class="card-overlay">
                     <p class="card-desc">Quantifying dose-response relationship between professional interpreter use and acute care outcomes to model hospital efficiency and patient safety.</p>
                     <div class="skills-container">
@@ -307,7 +427,7 @@
                 </div>
             </div>
 
-            <div class="project-card box-eye">
+            <div class="project-card box-eye" onclick="openModal('eyeModal')">
                 <div class="card-overlay">
                     <p class="card-desc">Synthesizing multi-sensor biometric data streams to quantify physiological correlates of mindfulness, using gaze-fixation patterns and skin conductance.</p>
                     <div class="skills-container">
@@ -322,7 +442,7 @@
                 </div>
             </div>
  
-            <div class="project-card box-meals">
+            <div class="project-card box-meals" onclick="openModal('mealsModal')">
                 <div class="card-overlay">
                     <p class="card-desc">Executing longitudinal analysis of community nutrition interventions to model trajectory of food security and stress levels in vulnerable populations.</p>
                     <div class="skills-container">
@@ -357,7 +477,7 @@
         <p style="margin-bottom: 30px;">Questions? Contact Lakshitha directly.</p>
         <ul class="footer-links">
             <li><a href="mailto:lakshithagovinda@email.com">Contact Me</a></li>
-            <li><a href="3-1-2026-Lakshitha Govinda-Resume.pdf">Resume</a></li>
+            <li><a href="3-20-2026-Lakshitha Govinda-Resume.pdf">Resume</a></li>
             <li><a href="https://boxd.it/b6jgf">My Letterboxd</a></li>
             <li><a href="#">Privacy</a></li>
             <li><a href="#">Terms of Use</a></li>
@@ -365,6 +485,117 @@
         </ul>
         <p style="margin-top: 50px; font-size: 0.8rem;">© 2026 Lakshitha G Portfolio</p>
     </footer>
+
+    <div id="interpreterModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal(event)">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title">Clinical Outcomes: Interpreter Utilization</h2>
+                <ul class="modal-bullets">
+                    <li>Quantify the dose-response relationship between professional interpreter utilization and acute care outcomes (safety, readmission).</li>
+                    <li>Develop an end-to-end ETL pipeline using Python (Pandas, NumPy) to aggregate and clean heterogeneous clinical data, including EMR logs and ADT timestamps.</li>
+                    <li>Leverage multivariate analysis to model the correlation between interpreter services and operational efficiency, developing a statistical framework to support targeted risk-stratification in discharge planning.</li>
+                </ul>
+            </div>
+            <div class="modal-body">
+                <div class="modal-math">
+                    <h4>Mathematical Modeling Used</h4>
+                    <p class="formula">ln(&mu;) = &beta;<sub>0</sub> + &beta;<sub>1</sub><i>X</i><sub>1</sub> + ... + &beta;<sub>k</sub><i>X</i><sub>k</sub></p>
+                    <p style="font-size: 0.85rem; color: #aaa; margin:0 0 15px 0;">Utilized <strong>Gamma Regression</strong> to account for right-skewed Length of Stay (LOS) distributions.</p>
+                    
+                    <p class="formula">ln(<i>p</i> / (1 - <i>p</i>)) = &beta;<sub>0</sub> + &beta;<sub>1</sub><i>X</i><sub>1</sub> + ... + &beta;<sub>k</sub><i>X</i><sub>k</sub></p>
+                    <p style="font-size: 0.85rem; color: #aaa; margin:0;">Implemented <strong>Firth Logistic Regression</strong> to analyze rare adverse safety events.</p>
+                </div>
+                <div class="modal-images">
+                    <div class="img-placeholder"><span>Confidential Trend Analysis<br>[Drop Chart 1 Image Here]</span></div>
+                    <div class="img-placeholder"><span>Risk-Stratification Results<br>[Drop Chart 2 Image Here]</span></div>
+                </div>
+                <div class="modal-credits">
+                    <p><strong>Starring:</strong> Python, SQL, SPSS</p>
+                    <p><strong>Supporting:</strong> Pandas, NumPy, ETL Pipelines, Scikit-learn</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="eyeModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal(event)">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title">Biometric Fusion: Eye Tracking & GSR</h2>
+                <ul class="modal-bullets">
+                    <li>Design multi-sensor experimental protocols to investigate correlation between Mindfulness & emotional regulation.</li>
+                    <li>Evaluate program workflows for Tobii Nano Eye-tracking and Shimmer GSR (Galvanic Skin Response) to capture pupil dilation, sweat, and gaze fixation.</li>
+                    <li>Optimize experimental data operations, driving 40% increase in longitudinal retention by refining participant tracking and strict adherence to IRB protocols.</li>
+                </ul>
+            </div>
+            <div class="modal-body">
+                <div class="modal-math">
+                    <h4>Data Engineering & Feature Extraction</h4>
+                    <p class="formula">=IF(B2>(AVERAGE(B:B)+1.5*STDEV(B:B)), "Peak", "Base")</p>
+                    <p style="font-size: 0.85rem; color: #aaa; margin:0;">Engineered feature extraction protocols utilizing advanced spreadsheet logic to quantify "Arousal Peaks" and gaze fixation duration, transforming raw sensor logs into structured datasets (n > 1,000 data points).</p>
+                </div>
+                <div class="modal-images">
+                    <div class="img-placeholder"><span>Gaze Fixation Heatmap<br>[Drop Chart 1 Image Here]</span></div>
+                    <div class="img-placeholder"><span>Arousal Peak Tracking<br>[Drop Chart 2 Image Here]</span></div>
+                </div>
+                <div class="modal-credits">
+                    <p><strong>Starring:</strong> Tobii Nano, Shimmer GSR, Excel, Python</p>
+                    <p><strong>Supporting:</strong> iMotions Biometric Platform, Feature Extraction</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mealsModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal(event)">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title">Share My Meals: Longitudinal Analysis</h2>
+                <ul class="modal-bullets">
+                    <li>Program reproducible analysis scripts to handle missing data imputation and covariance structure selection.</li>
+                    <li>Analyze within-family changes in Food Security scores and the <strong>Perceived Stress Scale (PSS-4)</strong> over six distinct time intervals.</li>
+                    <li>Model complex interaction effects (Time x Intervention x Cohort) to isolate the impact of nutrition support on vulnerable populations while adjusting for demographic covariates.</li>
+                    <li>Create trajectory plots using Estimated Marginal Means (EMMs) to demonstrate differential outcomes between control and experimental groups.</li>
+                </ul>
+            </div>
+            <div class="modal-body">
+                <div class="modal-math">
+                    <h4>Mathematical Modeling Used</h4>
+                    <p class="formula"><i>Y<sub>ij</sub></i> = &beta;<sub>0</sub> + &beta;<sub>1</sub><i>X<sub>ij</sub></i> + <i>b<sub>i</sub></i> + &epsilon;<sub>ij</sub></p>
+                    <p style="font-size: 0.85rem; color: #aaa; margin:0;">Developed Linear Mixed-Effects Models (LMM) in Python to control for autocorrelation and random intercepts.</p>
+                </div>
+                <div class="modal-images">
+                    <div class="img-placeholder"><span>Estimated Marginal Means (EMMs)<br>[Drop Chart 1 Image Here]</span></div>
+                    <div class="img-placeholder"><span>PSS-4 Trajectory Plot<br>[Drop Chart 2 Image Here]</span></div>
+                </div>
+                <div class="modal-credits">
+                    <p><strong>Starring:</strong> Python, Excel, SPSS</p>
+                    <p><strong>Supporting:</strong> Statsmodels, Seaborn, LLMs, Missing Data Imputation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if(modal) {
+                modal.classList.add('show');
+                // Lock the background so the user can't scroll the main page
+                document.body.style.overflow = 'hidden'; 
+            }
+        }
+
+        function closeModal(event) {
+            const openModals = document.querySelectorAll('.modal-overlay.show');
+            openModals.forEach(modal => {
+                modal.classList.remove('show');
+            });
+            // Re-enable background scrolling
+            document.body.style.overflow = 'auto';
+        }
+    </script>
 
 </body>
 </html>
