@@ -141,6 +141,46 @@
             z-index: 10; /* Brings the hovered box to the front */
         }
 
+        /* ========================================= */
+        /* --- FEATURED AI SKILL STYLING ---         */
+        /* ========================================= */
+
+        .skill-box.featured-skill {
+            transform: scale(1.15); /* Makes it 15% larger */
+            border: 2px solid #E50914; /* Permanent red border */
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+            margin: 0 15px; /* Extra breathing room */
+        }
+
+        .skill-box.featured-skill:hover {
+            transform: scale(1.25) translateY(-8px); /* Pops out even more on hover */
+            box-shadow: 0 15px 30px rgba(229, 9, 20, 0.6);
+            z-index: 20;
+        }
+
+        .netflix-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #E50914;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 3px;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            z-index: 5;
+        }
+
+        /* Detailed tooltip for the featured skill */
+        .featured-skill .skill-tooltip {
+            width: 280px; /* Wider to accommodate the detailed text */
+            text-align: left; /* Left align for easier reading of lists */
+        }
+
+        /* ========================================= */
+
         /* ## TOOLTIP / POP-UP STYLING ## */
         .skill-tooltip {
             position: absolute;
@@ -216,6 +256,11 @@
             .page-title { font-size: 2.2rem; }
             .skills-grid { gap: 15px; }
             .skill-box { width: 120px; padding: 20px 10px; }
+            
+            /* Ensure the featured box scales down nicely on mobile */
+            .skill-box.featured-skill { transform: scale(1.05); margin: 0; }
+            .skill-box.featured-skill:hover { transform: scale(1.1) translateY(-5px); }
+            
             .skill-icon { font-size: 2.2rem; }
             .skill-name { font-size: 0.85rem; }
             .footer-links { grid-template-columns: repeat(2, 1fr); }
@@ -263,6 +308,19 @@
 
     <main class="skills-section">
         
+        <h2 class="category-title">Artificial Intelligence</h2>
+        <div class="skills-grid">
+            <div class="skill-box featured-skill">
+                <div class="netflix-badge">N ORIGINAL</div>
+                <span class="skill-tooltip">
+                    <strong style="color: #fff;">Models:</strong> Gemini 1.5 Pro, GPT-4o<br>
+                    <strong style="color: #fff;">Prompting:</strong> CoT, Few-Shot<br>
+                    <strong style="color: #fff;">Focus:</strong> Synthetic data generation, SPSS-to-Python syntax translation, and high-volume medical journal summarization.
+                </span>
+                <i class="fas fa-brain skill-icon" style="color: #E50914;"></i> <span class="skill-name" style="color: white;">AI Integration & Prompting</span>
+            </div>
+        </div>
+
         <h2 class="category-title">Databases</h2>
         <div class="skills-grid">
             <div class="skill-box">
@@ -357,11 +415,6 @@
 
         <h2 class="category-title">Statistics & Analytics</h2>
         <div class="skills-grid">
-            <div class="skill-box">
-                <span class="skill-tooltip">Leveraged AI logic for advanced text analysis.</span>
-                <i class="fas fa-network-wired skill-icon"></i>
-                <span class="skill-name">LLM</span>
-            </div>
             <div class="skill-box">
                 <span class="skill-tooltip">Tracked patient outcome changes over extended timeframes.</span>
                 <i class="fas fa-chart-line skill-icon"></i>
