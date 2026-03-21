@@ -240,6 +240,13 @@
             filter: grayscale(100%) opacity(0.6);
             transition: all 0.3s ease;
         }
+        /* Specifically targeting the logo inside the Featured AI box */
+        .featured-skill .custom-logo {
+            width: 75px;  /* Increased from 45px */
+            height: 75px; /* Increased from 45px */
+            margin-bottom: 10px;
+            filter: grayscale(0%) opacity(1); /* Keeps it in full color by default */
+        }
 
         /* Brings full color and brightness back to the official logos on hover */
         .skill-box:hover .custom-logo {
