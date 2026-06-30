@@ -349,26 +349,33 @@
         }
 
         /* --- MOBILE OPTIMIZATION --- */
-
         @media (max-width: 900px) {
-
             body { flex-direction: column; }
             .nav-links { display: none; }
             .sidebar { 
                 width: 100%; 
                 height: auto; 
                 position: relative; 
-                top: 75px; /* Adjusts for navbar */
+                top: 75px; 
                 border-right: none; 
                 border-bottom: 1px solid #333; 
                 padding: 20px 5%;
-
             }
-
             .main-content { margin-left: 0; width: 100%; padding: 110px 5% 30px; }
+            
+            /* Keep cards fixed in place so the scrolling doesn't jump */
             .exp-card { min-width: 280px; height: 220px; }
+            .exp-card:hover { transform: none !important; z-index: 1; } /* Stops the jumping */
+            
+            /* Disable normal hover on mobile to prevent the "stuck" text */
+            .exp-card:hover .card-preview { opacity: 0; }
+            .exp-card:hover .thumb-title { opacity: 1; }
+            
+            /* We will use a special 'flipped' class controlled by JavaScript for tapping */
+            .exp-card.is-flipped .card-preview { opacity: 1; z-index: 20; }
+            .exp-card.is-flipped .thumb-title { opacity: 0; }
+            
             .preview-bullets { font-size: 0.75rem; }
-
         }
 
     </style>
@@ -692,35 +699,16 @@
                         </ul>
 
                         <div class="featuring-stack"><strong>Featuring:</strong> Financial Analysis, Email Marketing, Sales Tracking</div>
-
                     </div>
-
                 </div>
-
-
-
             </div>
-
         </section>
-
-
-
     </main>
-
-
-
     <script>
-
         const searchInput = document.getElementById('searchInput');
-
         const genreRows = document.querySelectorAll('.genre-row');
-
         const allCards = document.querySelectorAll('.exp-card');
-
         const noResultsMsg = document.getElementById('noResultsMsg');
-
-
-
         function filterExperience(query) {
 
             query = query.toLowerCase().trim();
@@ -730,83 +718,53 @@
 
 
             allCards.forEach(card => {
-
                 const skills = card.getAttribute('data-skills').toLowerCase();
-
                 const title = card.querySelector('.thumb-title').innerText.toLowerCase();
-
-
-
                 if (skills.includes(query) || title.includes(query)) {
-
                     card.style.display = 'block';
-
                     totalVisibleCards++;
-
                 } else {
-
                     card.style.display = 'none';
-
                 }
-
             });
-
-
-
             genreRows.forEach(row => {
-
                 const visibleCardsInRow = Array.from(row.querySelectorAll('.exp-card')).filter(card => card.style.display === 'block');
-
                 if (visibleCardsInRow.length === 0) {
-
                     row.style.display = 'none';
-
                 } else {
-
                     row.style.display = 'block';
-
                 }
-
             });
-
-
-
             if (totalVisibleCards === 0) {
-
                 noResultsMsg.style.display = 'block';
-
             } else {
-
                 noResultsMsg.style.display = 'none';
-
             }
-
         }
-
-
-
         searchInput.addEventListener('input', (e) => {
-
             filterExperience(e.target.value);
-
         });
-
-
-
         function searchTag(tagText) {
-
             searchInput.value = tagText;
-
             filterExperience(tagText);
-
             if(window.innerWidth <= 900) {
-
                 window.scrollTo({ top: 300, behavior: 'smooth' });
-
             }
-
         }
 
+        document.addEventListener("DOMContentLoaded", function() {
+            const cards = document.querySelectorAll('.exp-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Only apply this tap logic on mobile screens
+                    if (window.innerWidth <= 900) {
+                        this.classList.toggle('is-flipped');
+                    }
+                });
+            });
+        });
+        
     </script>
 
 
