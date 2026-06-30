@@ -221,11 +221,14 @@
         .ep-desc { font-size: 0.9rem; color: #ccc; line-height: 1.4; margin: 0; max-width: 80%; }
 
         /* --- MOBILE OPTIMIZATION --- */
-        @media (max-width: 768px) {
+@media (max-width: 768px) {
             .navbar { padding: 15px 5%; }
             .nav-links { display: none; }
             .info-hero { flex-direction: column; align-items: center; text-align: center; padding-top: 100px; }
-            .hero-image { width: 200px; height: 400px}
+            
+            /* FIXED: Made the image wider and set height to auto so it doesn't zoom in! */
+            .hero-image { width: 85%; max-width: 320px; height: auto; } 
+            
             .maturity-banner { justify-content: center; text-align: left; }
             
             .episode-row { flex-direction: column; align-items: flex-start; position: relative; padding: 15px 10px; }
